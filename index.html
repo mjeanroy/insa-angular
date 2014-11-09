@@ -403,7 +403,7 @@ foo(myFunc);
 				<section>
 					<h2>Javascript</h2>
 					<h5>Un langage orienté fonctionnel</h5>
-					<pre><code class="javascript">
+					<pre><code class="javascript" style="max-height: none;">
 // Fonction nommée "foo"
 // Cette fonction renvoie une fonction permettant de "logguer" le
 // contenu d'un tableau lorsqu'elle est exécutée
@@ -428,18 +428,65 @@ displayArray2(); // 'foo', 'bar'
 					<h5>Un langage orienté fonctionnel</h5>
 					<pre><code class="javascript">
 // On déclare un objet avec une fonction comme attribut
-var dog = {
-  name: 'milou',
+var batman = {
+  name: 'Batman',
   speak: function () {
-    console.log('wouaf !');
+    console.log('I am Batman');
   }
 };
 
-console.log(dog); // {name: "milou", speak: function} 
-console.log(typeof dog.speak); // 'function'
+console.log(batman); // {name: "Batman", speak: function} 
+console.log(typeof batman.speak); // 'function'
 
 // Exécution de la fonction
-dog.speak(); // 'wouaf !'
+batman.speak(); // 'wouaf !'
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					Comme beaucoup de langages fonctionnels, ECMAScript 5 rajoute des fonctions de manipulation de listes: forEach, map, some, every, reduce etc.
+					<pre><code class="javascript">
+// Exécute une fonction sur chaque élément d'un tableau
+[1, 2, 3].forEach(function (current, idx) {
+  console.log(current, idx);
+});
+
+// Applique une transformation à chaque élément et retourne
+// un nouveau tableau contenant tous les résultas
+// Ex: Multiplication par deux de tous les éléments
+var newArray = [1, 2, 3].map(function (current) {
+  return current * 2;
+});
+
+console.log(newArray); // 2, 4, 6
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<pre><code class="javascript" style="max-height: none;">
+// Vérifie une condition sur chaque élément d'un tableau
+// Est-ce que tous les éléments sont pairs ?
+[2, 4, 6].every(function (current) {
+  return current % 2 === 0;
+});
+
+// Vérifie qu'une condition est vérifié sur au moins un élément d'un tableau
+// Est-ce qu'au moins un élément est pair ?
+[1, 2, 3].some(function (current) {
+  return current % 2 === 0;
+});
+
+// Réduit le contenu du tableau à une valeur
+// Ex: somme de tous les éléments du tableau
+var reduceValue = [1, 2, 3].reduce(function (memo, current) {
+  return memo += current;
+}, 0);
+
+console.log(reduceValue); // 6
 					</code></pre>
 				</section>
 
