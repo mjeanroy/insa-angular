@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<style>
+			.mjy .reveal a,
+			.mjy .reveal a:hover {
+				color: #eee;
+			}
+
+			.mjy .reveal section.dark {
+				padding: 50px 1000px;
+				margin: 0 0 0 -1000px;
+				background-color: rgba(0, 0, 0, 0.1);
+				border-top: 1px solid #aaa;
+				border-bottom: 1px solid #aaa;
+			}
+
+			.mjy .reveal .icon-small {
+				max-height: 100px;
+				height: 100px;
+			}
+
+			.mjy .reveal .icon-block {
+				display: block;
+				margin: auto;
+			}
+
+			.mjy h5 {
+				font-style: italic;
+			}
+		</style>
+	</head>
+
+	<body class="mjy">
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="images/angularjs.jpg">
+					<h3>Mickael Jeanroy</h3>
+					<h5>mickael.jeanroy@zenika.com</h5>
+					<h5>INSA LYON - IF 2014</h5>
+					<h5>19 / 11 / 2014</h5>
+				</section>
+
+				<section data-background="images/who-am-i.jpg" class="dark">
+					<h2 style="color: #eee">Who am I ?</h2>
+					<div style="display: flex; width: 100%; margin: 50px 0;">
+						<div style="flex: 1;">
+							<a href="https://twitter.com/mickaeljeanroy">
+								<img class="icon icon-small icon-block" src="images/twitter.png">@mickaeljeanroy
+							</a>
+						</div>
+						<div style="flex: 1;">
+							<a href="https://github.com/mjeanroy">
+								<img class="icon icon-small icon-block" src="images/github.png">github.com/mjeanroy
+							</a>
+						</div>
+					</div>
+					<div style="display: flex; width: 100%; margin: 50px 0;">
+						<div style="flex: 1;">
+							<a href="http://if.insa-lyon.fr/">
+								<img class="icon icon-small icon-block" src="images/insa-lyon.jpg">IF 2008
+							</a>
+						</div>
+						<div style="flex: 1;">
+							<a href="https://twitter.com/ZenikaIT">
+								<img class="icon icon-small icon-block" src="images/zenika.jpeg">@ZenikaIT
+							</a>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2><img style="height: 100px; border: none;" src="images/zenika.jpg"></h2>
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/java8.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/spring.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/hibernate.png">
+					</div>
+
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/mongo.jpeg">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/eslogo.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/redis_logo.png">
+					</div>
+
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/html5.gif">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/angular_logo.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/nodejs-logo.png">
+					</div>
+				</section>
+
+				<section>
+					<h2>Programme</h2>
+					<ol>
+						<li>Javascript</li>
+						<li>Angular.js</li>
+						<li>TP</li>
+						<li>Build your own Angular.js</li>
+					</ol>
+
+					<div style="font-style: italic; margin-top: 50px;"><small>Du code, beaucoup de code !</small></div>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Introduction</h5>
+					<ul>
+						<li>Créé en 1995 par Brendan Eich pour Netscape</li>
+						<li>
+							Standardisé: ECMAScript
+							<ul>
+								<li>ECMAScript 3 : 1999</li>
+								<li><strong>ECMAScript 5 : 2009</strong></li>
+								<li>ECMAScript 6 : encore en cours de développement !</li>
+							</ul>
+						</li>
+						<li>ECMAScript 5 est la version actuellement implémentée dans les navigateurs (Chrome, Firefox, Safari, IE10)</li>
+						<li>Souvent considéré comme un langage "pourri", on va voir aujourd'hui qu'en connaissant ses faiblesses, il devient au contraite un langage très puissant.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Introduction</h5>
+					<ul>
+						<li>Langage de script</li>
+						<li>
+							S'exécute dans une VM (Virtual Machine)
+							<ul>
+								<li>Browser: V8 (Chrome) ; SpiderMonkey (Firefox) ; JavaScriptCore (Safari) etc.</li>
+								<li>Serveur: V8 (NodeJS) ; Rhino (Java) etc.</li>
+							</ul>
+						</li>
+						<li>La gestion de la mémoire est géré grâce à un <strong>garbage collector</strong></li>
+						<li>Langage <strong>dynamique</strong></li>
+						<li>Langage <strong>faiblement typé</strong></li>
+						<li>Langage <strong>orienté prototype</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage faiblement typé</h5>
+					<ul>
+						<li>Le mot clé "var" permet de déclarer une variable</li>
+						<li>Peu de type: number, string, boolean, function, null</li>
+						<li>Une variable sans aucune valeur est "undefined"</li>
+						<li>Les objets et les tableaux permettent de les composer</li>
+						<li>Une variable n'a pas de type fixe (typage dynamique)</li>
+					</ul>
+					<pre><code class="javascript">
+var foo;
+console.log(foo); // 'undefined'
+console.log(typeof foo); // 'undefined'
+
+foo = 5;
+console.log(typeof foo); // 'number'
+
+foo = 'string';
+console.log(typeof foo); // 'string'
+
+foo = true;
+console.log(typeof foo); // boolean
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Les tableaux</h5>
+					<ul>
+						<li>Une seule structure de données: les tableaux</li>
+						<li>Suite ordonnée d'éléments, chaque élément étant accessible par son index</li>
+						<li>La propriété "length" donne la taille du tableau</li>
+						<li>ECMAScript 6 apporte de nouvelles structures données: Set, WeakSet, Map, WeakMap</li>
+					</ul>
+					<pre><code class="javascript">
+var foo = [1, 2, 3];
+console.log(typeof foo); // [1, 2, 3]
+
+foo.push('string', true);
+console.log(typeof foo); // [1, 2, 3, 'string', true]
+
+console.log(foo.length); // 5
+console.log(foo[4]); // true
+console.log(foo[5]); // undefined
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Les objets</h5>
+					<ul>
+						<li>En javascript, un objet est dynamique: on peut lui rajouter un attribut au runtime</li>
+						<li>Ni plus, ni moins qu'un tableau associatif</li>
+					</ul>
+					<pre><code class="javascript">
+var foo = {};
+console.log(typeof foo); // 'object'
+console.log(foo); // {}
+
+foo = {
+  id: 1
+};
+console.log(foo); // {id: 1}
+
+foo.name = 'Mickael';
+console.log(foo); // {id: 1, name: 'Mickael'}
+
+foo.skills = ['Js', 'Java'];
+console.log(foo.skills); // ['Js', 'Java']
+console.log(foo['skills']); // ['Js', 'Java']
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Spécificités</h5>
+					<ul>
+						<li>
+							En javascript, on distingue égalité et égalité stricte
+							<ul>
+								<li>L'opérateur "==" (négation: "!=") permet de comparer deux objets indépendamment du type</li>
+								<li>L'opérateur "===" (négation: "!==") permet de comparer deux objets en prenant en compte les types</li>
+							</ul>
+						</li>
+						<li>Pour le cas des objets et des tableaux, c'est toujours une comparaison d'instance qui est faite!</li>
+					</ul>
+					<pre><code class="javascript">
+var foo = 1;
+var bar = '1';
+console.log(foo == bar);  // true
+console.log(foo === bar); // false
+
+console.log([1, 2, 3] == [1, 2, 3]);  // false
+console.log([1, 2, 3] === [1, 2, 3]); // false
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Spécificités</h5>
+					<ul>
+						<li>Questions: qu'affiche ce code ?</li>
+					</ul>
+					<pre><code class="javascript">
+console.log('' == '0');  // ???
+console.log('' == 0);    // ???
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Spécificités</h5>
+					WTF ??
+					<pre><code class="javascript">
+console.log('' == '0');  // false
+console.log('' == 0);    // true
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Spécificités</h5>
+					http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.1
+					<img src="images/equality.png">
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Spécificités</h5>
+					<ul>
+						<li>Pour simplifier: Javascript essaye de rapprocher les variables vers deux types identiques.</li>
+						<li>Cela peut amener à quelques spécificités un peu "étrange".</li>
+						<li>Simplifiez-vous la vie, <strong>utilisez toujours l'égalité stricte !</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<ul>
+						<li>En javascript, les fonctions sont partout</li>
+						<li>Considéré comme un type comme un autre: le type "function" est un type comme un autre</li>
+						<li>Une fonction peut être nommée ou anonyme</li>
+					</ul>
+					<pre><code class="javascript">
+// Fonction nommée "foo"
+function foo() {
+  console.log('hello world');
+}
+
+foo();
+
+// Fonction anonyme qu'on affecte à une variable "foo"
+var foo = function () {
+  console.log('hello world');
+};
+
+foo();
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<ul>
+						<li>Une fonction a un <strong>nombre de paramètre variable</strong></li>
+						<li>Le mot clé "arguments" au sein d'une fonction permet de récupérer la liste des paramètres</li>
+						<li>Une fonction peut ne rien retourner</li>
+					</ul>
+					<pre><code class="javascript">
+// Fonction nommée "foo"
+function foo(param1, param2) {
+  console.log(param1, param2, 'arguments = ', arguments);
+
+  if (param1 === 1) {
+    return true;
+  }
+}
+
+foo();         // undefined, undefinfed, arguments = []
+foo(1);        // 1, undefinfed, arguments = [1]
+foo(1, 2);     // 1, 2, arguments = [1, 2]
+foo(1, 2, 3);  // 1, 2, arguments = [1, 2, 3]
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<ul>
+						<li>Une fonction peut être donnée en paramètre à une autre fonction</li>
+						<li>Une fonction peut retourner une autre fonction</li>
+						<li>En langage fonctionnel, de telles fonctions sont appelées <strong>fonction d'ordre supérieure</strong></li>
+						<li>Une fonction peut également être affecté à un <strong>attribut d'un objet</strong></li>
+						<li>Avec Angular.js, on manipule et on écrit des fonctions <strong>tout le temps</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<pre><code class="javascript" style="max-height: none;">
+// Fonction nommée "foo": cette fonction prend en paramètre une fonction
+// à exécuter
+function foo(func) {
+  func();
+}
+
+// Ce code donne une fonction anonyme en paramètre de la fonction "foo"
+foo(function () {
+  console.log('hello world');
+});
+
+// Ce code déclare une fonction nommée "myFunc"
+// Cette fonction est ensuite donnée en paramètre de la fonction "foo"
+function myFunc() {
+  console.log('hello world');
+}
+
+foo(myFunc);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<pre><code class="javascript">
+// Fonction nommée "foo"
+// Cette fonction renvoie une fonction permettant de "logguer" le
+// contenu d'un tableau lorsqu'elle est exécutée
+function foo(array) {
+  return function () {
+    for (var i = 0; i < array.length; i++) {
+      console.log(array[i]);
+    }
+  };
+}
+
+var displayArray1 = foo([1, 2, 3]);
+var displayArray2 = foo(['foo', 'bar']);
+
+displayArray1(); // 1, 2, 3
+displayArray2(); // 'foo', 'bar'
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<pre><code class="javascript">
+// On déclare un objet avec une fonction comme attribut
+var dog = {
+  name: 'milou',
+  speak: function () {
+    console.log('wouaf !');
+  }
+};
+
+console.log(dog); // {name: "milou", speak: function} 
+console.log(typeof dog.speak); // 'function'
+
+// Exécution de la fonction
+dog.speak(); // 'wouaf !'
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté prototype</h5>
+					<ul>
+						<li>Le langage Javascript n'est pas un langage orienté objet</li>
+						<li>Mais, cela ne signifie pas qu'on ne peut utiliser des objets !</li>
+						<li>On peut déclarer des constructeurs, la forme la plus classique est d'instantier une fonction avec le mot clé "new"</li>
+					</ul>
+					<pre><code class="javascript">
+// Fonction nommée "foo"
+var Hero = function (name) {
+  this.name = name;
+  this.speak = function () {
+    console.log('I am ' + this.name);
+  };
+};
+
+var batman = new Hero('Batman');
+var superman = new Hero('Superman');
+
+batman.speak();   // I am Batman
+superman.speak(); // I am Superman
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté prototype</h5>
+					<ul>
+						<li>Chaque object dispose d'un "prototype"</li>
+						<li>Un prototype n'est rien de plus qu'une liste de propriétés (i.e. un objet) partagé par toutes les instances d'un même type</li>
+					</ul>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
