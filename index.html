@@ -252,6 +252,26 @@ console.log(foo['skills']); // ['Js', 'Java']
 
 				<section>
 					<h2>Javascript</h2>
+					<h5>Les objets</h5>
+					<ul>
+						<li>Il est possible d'itérer simplement sur tous les attributes d'un object</li>
+					<pre><code class="javascript">
+var foo = {
+  id: 1,
+  name: 'foo'
+};
+
+for (var key in foo) {
+  console.log(key + ' = ' + foo[key]);
+}
+
+// id = 1
+// name = foo
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
 					<h5>Spécificités</h5>
 					<ul>
 						<li>
@@ -512,6 +532,7 @@ var superman = new Hero('Superman');
 
 batman.speak();   // I am Batman
 superman.speak(); // I am Superman
+console.log(batman.speak === superman.speak); // false
 					</code></pre>
 				</section>
 
@@ -519,8 +540,202 @@ superman.speak(); // I am Superman
 					<h2>Javascript</h2>
 					<h5>Un langage orienté prototype</h5>
 					<ul>
-						<li>Chaque object dispose d'un "prototype"</li>
-						<li>Un prototype n'est rien de plus qu'une liste de propriétés (i.e. un objet) partagé par toutes les instances d'un même type</li>
+						<li>Chaque objet dispose d'un "prototype"</li>
+						<li>Un prototype n'est rien de plus qu'une liste de propriétés (a.k.a un objet) <strong>partagé</strong> par toutes les instances d'un même type</li>
+					</ul>
+					<pre><code class="javascript">
+// Fonction nommée "foo"
+var Hero = function (name) {
+  this.name = name;
+};
+
+Hero.prototype = {
+  speak: function () {
+    console.log('I am ' + this.name);
+  }
+};
+
+var batman = new Hero('Batman');     // I am Batman
+var superman = new Hero('Superman'); // I am Superman
+console.log(batman.speak === superman.speak); // true
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté prototype</h5>
+					<ul>
+						<li>ECMAScript 5 introduit la fonction Object.create pour créer un objet en lui donnant son "prototype"</li>
+					</ul>
+					<pre><code class="javascript">
+// Fonction nommée "foo"
+var prototype = {
+  speak: function () {
+    console.log('I am ' + this.name);
+  }
+};
+
+var batman = Object.create(prototype);
+batman.name = 'Batman';
+
+var superman = Object.create(prototype);
+superman.name = 'Superman';
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté prototype</h5>
+					<ul>
+						<li>
+							Le langage Javascript ne possède pas de "classe" au sens orienté objet.
+							<ul>
+								<li>Pas d'héritage</li>
+								<li>Pas de visibilité "private" ou "protected"</li>
+							</ul>
+						</li>
+						<li>ECMAScript 6 introduit la notion de classes, mais limité à ce qu'on vient de voir</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>by Google</h5>
+					<ul>
+						<li>Angular.js est un framework javascript "full stack"</li>
+						<li>Développé par Google (Miško Hevery, Igor Minar, Vojta Jina, etc.)</li>
+						<li>Version 1.3.2</li>
+						<li>Open source: https://github.com/angular/angular.js</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Introduction</h5>
+					<ul>
+						<li>Data binding</li>
+						<li>Single Page Application (SPA)</li>
+						<li>REST</li>
+						<li>Injection de dépendance (DI)</li>
+						<li>MVC</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Introduction</h5>
+					<div>DEMO</div>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Composants</h5>
+					<ul>
+						<li>Module</li>
+						<li>Contrôleurs</li>
+						<li>Services et factory</li>
+						<li>Filtres</li>
+						<li>Directives</li>
+						<li>Routeur</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Module</h5>
+					<ul>
+						<li>Contient les différents composants de votre application</li>
+						<li>Toute application contient au moins un module</li>
+					</ul>
+					<pre><code class="html">
+&lt;html ng-app="myApp"&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  	&lt;!-- Votre page html --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+					</code></pre>
+					<pre><code class="javascript">
+// Création d'un module
+var myAppModule = angular.module('myApp', []);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Module</h5>
+					<ul>
+						<li>Equivalent d'un "main" (point d'entrée de votre application)</li>
+						<li>Tous les composants de votre application seront créés au sein de votre module</li>
+						<li>Le deuxième paramètre est la liste des modules dont votre application dépend</li>
+						<li>Pour récupérer un module sans le créer, il suffit de ne pas préciser le second paramètre</li>
+					</ul>
+					<pre><code class="javascript">
+// Création d'un module
+var myAppModule = angular.module('myApp', []);
+
+// Récupération du module
+var module = angular.module('myApp');
+
+console.log(myAppModule === module); // true
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Contrôleurs</h5>
+					<ul>
+						<li>Un contrôleur contient la logique (le comportement) associé à votre page HTML</li>
+						<li>C'est un contrôleur conforme au pattern MV<strong>C</strong></li>
+						<li>Un contrôleur angular.js n'est rien d'autre qu'une fonction !</li>
+					</ul>
+					<pre><code class="html">
+<div ng-controller="myController">
+  <p>Ma page HTML</p>
+</div>
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', function () {
+    // Le code de votre contrôleur !
+  });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Contrôleurs</h5>
+					<ul>
+						<li>Pour afficher des données gérées dans votre contrôleur, il faut les partager à la vue</li>
+						<li>Pour partager des données, on utilise l'object $scope</li>
+					</ul>
+					<pre><code class="html">
+<div ng-controller="myController">
+  <p>Hello {{ name }}</p>
+</div>
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', ['$scope', function ($scope) {
+    $scope.name = 'world';
+  }]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Contrôleurs</h5>
+					<ul>
+						<li>L'object $scope a été instancié par Angular.js : notre application ne crée pas d'objets, mais <strong>demande à Angular.js de nous les fournir</strong></li>
+						<li>C'est <strong>l'injection de dépendance</strong></li>
+						<li>
+							C'est un concept qu'on retrouve dans beaucoup d'autres langages et framework
+							<ul>
+								<li>Java: Spring, CDI</li>
+								<li>PHP: Symfony</li>
+							</ul>
+						</li>
 					</ul>
 				</section>
 			</div>
