@@ -738,6 +738,140 @@ angular.module('myApp')
 						</li>
 					</ul>
 				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Factory</h5>
+					<ul>
+						<li>Une factory représente uniquement un composant ré-utilisable</li>
+						<li>On peut le récupérer dans un contrôleur par injection de dépendance</li>
+						<li>C'est à la factory d'instancier le composant</li>
+					</ul>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .factory('myComponent', [function () {
+    return {
+      helloWorld: function () {
+        console.log('hello world');
+      }
+    };
+  }]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Factory</h5>
+						<pre><code class="javascript">
+
+var module = angular.module('myApp');
+module.factory('myComponent', [function () {
+  return {
+    helloWorld: function () {
+      return 'Hello World';
+    }
+  };
+}]);
+
+module.controlle('myController', ['$scope', 'myComponent', function ($scope, myComponent) {
+  $scope.message = myComponent.helloWorld();
+}]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Factory</h5>
+					<ul>
+						<li>La factory est exécutée la première fois où le composant est injecté</li>
+						<li>Le composant ne sera créé qu'une et une seule fois (singleton)</li>
+						<li>Idéal pour factoriser du code entre contrôleur</li>
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Service</h5>
+					<ul>
+						<li>Une service ressemble à une factory mais l'objet est déjà instanciée</li>
+						<li>On définit juste les attributs sur "this"</li>
+					</ul>
+					<pre><code class="javascript">
+
+var module = angular.module('myApp');
+module.factory('myComponent', [function () {
+  this.helloWorld = function () {
+    return 'Hello World';
+  };
+}]);
+
+module.controlle('myController', ['$scope', 'myComponent', function ($scope, myComponent) {
+  $scope.message = myComponent.helloWorld();
+}]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Filtres</h5>
+					<ul>
+						<li>Un filtre est un composant permettant d'altérer l'affichage d'une valeur</li>
+						<li>Evalué lorsque le DOM est affiché / rafraichit</li>
+						<li>Un exemple est l'utilisation du filtre angular "date"</li>
+					</ul>
+					<pre><code class="javascript">
+module.controlle('myController', ['$scope', function ($scope) {
+  $scope.myDate = new Date();
+}]);
+
+&lt;div ng-conroller="myController"&gt;
+  &lt;Current date: {{ myDate | date:'dd/MM/yyyy' }}&gt;
+&lt;/div&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Filtres</h5>
+					<ul>
+						<li>
+							Angular fournit une collection de filtre prêt à l'emploi
+							<ul>
+								<li>date</li>
+								<li>number</li>
+								<li>currency</li>
+								<li>uppercase / lowercase</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Filtres</h5>
+					<ul>
+						<li>Les filtres peuvent se chaîner (comme un pipe unix)</li>
+					</ul>
+					<pre><code class="javascript">
+module.controlle('myController', ['$scope', function ($scope) {
+  $scope.myDate = new Date();
+}]);
+
+&lt;div ng-conroller="myController"&gt;
+  &lt;Current date: {{ myDate | date:'dd/MMMMM/yyyy' | uppercase }}&gt;
+&lt;/div&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Directives</h5>
+					<ul>
+						<li>Les directives représentent une extention du DOM</li>
+						<li>Peut être utilisé comme un attribut ou une nouvelle balise</li>
+						<li>Les attributs ng-controller / ng-app sont des directives</li>
+					</ul>
+				</section>
 			</div>
 
 		</div>
