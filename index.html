@@ -178,6 +178,40 @@
 
 				<section>
 					<h2>Javascript</h2>
+					<h5>Debug</h5>
+					<ul>
+						<li>Le plus basique: console.log</li>
+						<li>Permet de laisser des traces sur les appels</li>
+						<li>Attention: certaines vieilles versions d'IE ne le supportent pas</li>
+					</ul>
+										<pre><code class="javascript">
+// Fonction nommée "foo"
+function foo() {
+  console.log('hello world', 'hello bar');
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Debug</h5>
+					<ul>
+						<li><strong>Chrome Dev Tools</strong> : le meilleur !</li>
+						<li>Firebug</li>
+						<li>Safari Web Inspector</li>
+						<li>Opera DragonFlyx</li>
+						<li>IE : présent depuis IE9</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Debug</h5>
+					TODO : capture d'écran Chrome Dev Tools
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
 					<h5>Un langage faiblement typé</h5>
 					<ul>
 						<li>Le mot clé "var" permet de déclarer une variable</li>
@@ -633,6 +667,7 @@ superman.name = 'Superman';
 					<ul>
 						<li>Module</li>
 						<li>Contrôleurs</li>
+						<li>Formulaires</li>
 						<li>Services et factory</li>
 						<li>Filtres</li>
 						<li>Directives</li>
@@ -709,6 +744,7 @@ angular.module('myApp')
 					<ul>
 						<li>Pour afficher des données gérées dans votre contrôleur, il faut les partager à la vue</li>
 						<li>Pour partager des données, on utilise l'object $scope</li>
+						<li>C'est le <strong>M</strong> du modèle <strong>M</strong>VC</li>
 					</ul>
 					<pre><code class="html">
 <div ng-controller="myController">
@@ -741,20 +777,113 @@ angular.module('myApp')
 
 				<section>
 					<h2>Angular.js</h2>
-					<h5>Factory</h5>
+					<h5>$scope</h5>
 					<ul>
-						<li>Une factory représente uniquement un composant ré-utilisable</li>
-						<li>On peut le récupérer dans un contrôleur par injection de dépendance</li>
-						<li>C'est à la factory d'instancier le composant</li>
+						<li>
+							L'object $scope est un objet très important</strong>
+							<ul>
+								<li>Il contient les données accessible depuis la page html</li>
+								<li>Il hérite (au sens héritage prototypal) de ses scopes parents</li>
+								<li>Il possède des méthodes utiles: $watch ; $on</li>
+								<li>Tout objet $scope hérite forcément du <strong>$rootScope</strong></li>
+								<li>Toute application Angular.js possède <strong>un (et un seul) $rootscope</strong></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>$scope</h5>
+					Chaque $scope hérite de son scope parent (défini par l'arborescence du dom)
+					<pre><code class="html">
+<div ng-controller="myController">
+  <div ng-controller="myOtherContoller">
+  </div>
+</div>
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', ['$scope', function ($scope) {
+    $scope.name = 'world';
+  }])
+  .controller('myOtherController', ['$scope', function ($scope) {
+    console.log($scope.name); // world
+  }]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>$scope</h5>
+					<ul>
+						<li>La méthode $watch permet d'exécuter du code quand une valeur change</li>
+						<li>Ressemble fortement à Object.observe</li>
 					</ul>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .factory('myComponent', [function () {
-    return {
-      helloWorld: function () {
-        console.log('hello world');
-      }
-    };
+  .controller('myController', ['$scope', function ($scope) {
+    $scope.name = 'world';
+
+    $scope.$watch('name', function (newValue, oldValue) {
+      console.log(newValue, oldValue);
+    });
+  }]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>$scope</h5>
+					<ul>
+						<li>La méthode $on permet d'écouter un évenement provenant d'un autre contrôleur</li>
+						<li>Une façon de faire communiquer des contrôleurs (mais pas toujours la bonne façon)</li>
+					</ul>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+    $scope.name = 'world';
+
+    $scope.$on('myEvent', function (event, param1) {
+      console.log(param1);
+    });
+
+    $rootScope.$broadcast('myEvent', 'foo');
+  }]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Formulaires</h5>
+					<ul>
+						<li>Pour récupérer les valeurs saisies dans un formulaire, on utilisera l'attribut ng-model</li>
+						<li>Le double binding d'Angular.js nous permet de récupérer les saisies en quelques lignes</li>
+						<li>Au fur et à mesure de la saisie, les variables du scope sont mises à jour par Angular.js</li>
+						<li>C'est ce qu'on appelle le <strong>double binding</strong></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Formulaires</h5>
+					Exemple
+					<pre><code class="html">
+<div ng-controller="myController">
+  <form>
+    <input type="text" ng-model="name">
+    Message: {{ name }}
+  </form>
+</div>
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', ['$scope', function ($scope) {
+    $scope.name = 'hello world';
+
+    $scope.$on('name', function (newValue) {
+      console.log(newValue);
+    }):
   }]);
 					</code></pre>
 				</section>
@@ -762,20 +891,25 @@ angular.module('myApp')
 				<section>
 					<h2>Angular.js</h2>
 					<h5>Factory</h5>
-						<pre><code class="javascript">
-
-var module = angular.module('myApp');
-module.factory('myComponent', [function () {
-  return {
-    helloWorld: function () {
-      return 'Hello World';
+					<ul>
+						<li>Une factory permet d'extraire des composant ré-utilisable</li>
+						<li>On peut le récupérer dans un contrôleur par injection de dépendance</li>
+						<li>C'est à la factory d'instancier le composant</li>
+					</ul>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .factory('myComponent', function () {
+    return {
+      helloWorld: function () {
+        console.log('hello world');
+      }
+    };
+  })
+  .controller('myController', ['$scope', 'myComponent',
+    function ($scope, myComponent) {
+      $scope.message = myComponent.helloWorld();
     }
-  };
-}]);
-
-module.controlle('myController', ['$scope', 'myComponent', function ($scope, myComponent) {
-  $scope.message = myComponent.helloWorld();
-}]);
+  ]);
 					</code></pre>
 				</section>
 
@@ -784,7 +918,7 @@ module.controlle('myController', ['$scope', 'myComponent', function ($scope, myC
 					<h5>Factory</h5>
 					<ul>
 						<li>La factory est exécutée la première fois où le composant est injecté</li>
-						<li>Le composant ne sera créé qu'une et une seule fois (singleton)</li>
+						<li>Le composant ne sera créé qu'une et une seule fois (singleton) : idéal pour partager des données entre contrîoleurs !</li>
 						<li>Idéal pour factoriser du code entre contrôleur</li>
 					</code></pre>
 				</section>
@@ -793,21 +927,23 @@ module.controlle('myController', ['$scope', 'myComponent', function ($scope, myC
 					<h2>Angular.js</h2>
 					<h5>Service</h5>
 					<ul>
-						<li>Une service ressemble à une factory mais l'objet est déjà instanciée</li>
+						<li>Un service ressemble à une factory avec une différence : l'objet est déjà instanciée</li>
 						<li>On définit juste les attributs sur "this"</li>
+						<li>Peut être vu comme un raccourci pour écrire une factory</li>
 					</ul>
 					<pre><code class="javascript">
 
-var module = angular.module('myApp');
-module.factory('myComponent', [function () {
-  this.helloWorld = function () {
-    return 'Hello World';
-  };
-}]);
-
-module.controlle('myController', ['$scope', 'myComponent', function ($scope, myComponent) {
-  $scope.message = myComponent.helloWorld();
-}]);
+angular.module('myApp');
+  .factory('myComponent', function () {
+    this.helloWorld = function () {
+      return 'Hello World';
+    };
+  })
+  .controlle('myController', ['$scope', 'myComponent',
+    function ($scope, myComponent) {
+      $scope.message = myComponent.helloWorld();
+    }
+  ]);
 					</code></pre>
 				</section>
 
@@ -816,17 +952,19 @@ module.controlle('myController', ['$scope', 'myComponent', function ($scope, myC
 					<h5>Filtres</h5>
 					<ul>
 						<li>Un filtre est un composant permettant d'altérer l'affichage d'une valeur</li>
-						<li>Evalué lorsque le DOM est affiché / rafraichit</li>
+						<li>Evalué lorsque le DOM est affiché / rafraichit (à chaque fois !)</li>
 						<li>Un exemple est l'utilisation du filtre angular "date"</li>
 					</ul>
-					<pre><code class="javascript">
-module.controlle('myController', ['$scope', function ($scope) {
-  $scope.myDate = new Date();
-}]);
-
+					<pre><code class="html">
 &lt;div ng-conroller="myController"&gt;
   &lt;Current date: {{ myDate | date:'dd/MM/yyyy' }}&gt;
 &lt;/div&gt;
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controlle('myController', ['$scope', function ($scope) {
+    $scope.myDate = new Date();
+  }]);
 					</code></pre>
 				</section>
 
@@ -850,16 +988,63 @@ module.controlle('myController', ['$scope', function ($scope) {
 					<h2>Angular.js</h2>
 					<h5>Filtres</h5>
 					<ul>
+						<li>Un filtre peut également être utilisé dans un contrôleur</li>
+					</ul>
+					<pre><code class="html">
+&lt;div ng-conroller="myController"&gt;
+  &lt;Current date: {{ myDate }}&gt;
+&lt;/div&gt;
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controlle('myController', ['$scope', '$filter',
+    function ($scope, $filter) {
+      $scope.myDate = $filter('date')(new Date(), 'dd/MM/yyyy');
+    }
+  ]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Filtres</h5>
+					<ul>
 						<li>Les filtres peuvent se chaîner (comme un pipe unix)</li>
 					</ul>
-					<pre><code class="javascript">
-module.controlle('myController', ['$scope', function ($scope) {
-  $scope.myDate = new Date();
-}]);
-
+					<pre><code class="html">
 &lt;div ng-conroller="myController"&gt;
   &lt;Current date: {{ myDate | date:'dd/MMMMM/yyyy' | uppercase }}&gt;
 &lt;/div&gt;
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controlle('myController', ['$scope', function ($scope) {
+    $scope.myDate = new Date();
+  }]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Filtres</h5>
+					<ul>
+						<li>Ecrire un filtre customisé consiste à écrire une fonction !</li>
+					</ul>
+					<pre><code class="html">
+&lt;div ng-conroller="myController"&gt;
+  &lt;Use foo filter {{ myData | foo }}&gt;
+&lt;/div&gt;
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', function ($scope) {
+    $scope.myData = 'hello';
+  })
+  .filter('foo', function () {
+    return function (param) {
+      return param + ' foo';
+    };
+  });
 					</code></pre>
 				</section>
 
@@ -869,7 +1054,43 @@ module.controlle('myController', ['$scope', function ($scope) {
 					<ul>
 						<li>Les directives représentent une extention du DOM</li>
 						<li>Peut être utilisé comme un attribut ou une nouvelle balise</li>
-						<li>Les attributs ng-controller / ng-app sont des directives</li>
+						<li>Les attributs ng-controller / ng-app sont des directives !</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Directives</h5>
+					<pre><code class="javascript">
+module.directive('ngBind', function () {
+  return function (scope, element, attrs) {
+    scope.$watch(attrs.ngBind, function (newValue) {
+      element.html(newValue);
+    });
+  };
+});
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Directives</h5>
+					<ul>
+						<li>Sujet vaste et compliqué qu'on n'abordera pas plus aujourd'hui</li>
+						<li>Nombreux exemples sur Github (angular-ui, angular-strap)</li>
+						<li>Beaucoup de directives Angular.js (ngBind, ngModel, etc.) sont simples à lire et sont très instructives</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Best practices</h5>
+					<ul>
+						<li>Pas de manipulation du DOM dans un contrôleur : c'est le rôle d'une directive !</li>
+						<li>La customisation de l'affichage doit être fait dans un filtre</li>
+						<li>Gardez vos contrôleurs simple et "petit"</li>
+						<li>Utiliser des services pour factoriser du code et extraire le code "compliqué" des contrôleurs</li>
+						<li><strong>Faites des tests unitaires</strong> : jasmine + karma = :)</li>
 					</ul>
 				</section>
 			</div>
