@@ -23,9 +23,44 @@ app.get('/tweets', function (req, res) {
 
 app.post('/tweets', function (req, res) {
   console.log('POST: ', tweetUrl);
-  http.post(tweetUrl, function(r) {
-    r.pipe(res);
-  });
+
+  var login = req.param('login');
+  var message = req.param('message');
+
+  if (!login || !message) {
+    res.status(400);
+    res.json({
+      status: 400,
+      message: 'Please send a login and a message'
+    });
+  }
+  else {
+    var data = {
+      login: req.param('login'),
+      message: req.param('message')
+    };
+
+    var str = JSON.stringify(data);
+
+    var options = {
+      hostname: ip,
+      port: port,
+      path: '/tweets',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': str.length
+      }
+    };
+
+    var httpreq = http.request(options, function(r) {
+      r.pipe(res);
+    });
+
+    // write data to request body
+    httpreq.write(str);
+    httpreq.end();
+  }
 });
 
 // Start server

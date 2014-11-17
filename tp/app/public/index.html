@@ -11,24 +11,54 @@
       </div>
     </nav>
 
-    <div>
-      <form>
+    <div ng-controller="tweetsController">
+      <form name="tweetForm">
         <div class="form-group" style="text-align: center">
           Message :
-          <textarea class="form-control" placeholder="Tweet"></textarea>
-           <button class="btn btn-success">Tweet !</button>
+          <input class="form-control" type="text" ng-model="tweet.login" ng-required>
+          <textarea class="form-control" placeholder="Tweet" ng-model="tweet.message" ng-required></textarea>
+          <button class="btn btn-success" ng-click="submit(tweet);" ng-disabled="tweetForm.$invalid">Tweet !</button>
         </div>
       </form>
 
       <div>
-        <p>foo</p>
-        <p>Hello guys !</p>
+        <div ng-repeat="tweet in tweets | orderBy:'-time'">
+          <p>{{ tweet.login }}</p>
+          <p>{{ tweet.message }}</p>
+        </div>
       </div>
     </div>
   </body>
 
    <script type="text/javascript" src="angular.js"></script>
    <script type="text/javascript">
-      angular.module('tweetInsa', []);
+      angular.module('tweetInsa', [])
+        .run(['$rootScope', function ($rootScope) {
+          // TODO connexion websocket
+        }])
+
+        .controller('tweetsController', ['$scope', '$http', function ($scope, $http) {
+          $scope.tweets = [];
+
+          var addTweet = function (tweet) {
+            $scope.tweets.push(tweet);
+          };
+
+          $http.get('/tweets')
+            .success(function (data) {
+              $scope.tweets = data;
+            });
+
+          $scope.$on('app:tweet', function (event, tweet) {
+            addTweet(tweet);
+          });
+
+          $scope.submit = function (tweet) {
+            $http.post('/tweets', tweet)
+              .success(function (data) {
+                addTweet(data[0]);
+              });
+          };
+        }]);
    </script>
 </html>
