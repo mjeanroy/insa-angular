@@ -131,6 +131,7 @@
 					<h2>Programme</h2>
 					<ol>
 						<li>Javascript</li>
+						<li>Ecosystème</li>
 						<li>Angular.js</li>
 						<li>TP</li>
 						<li>Build your own Angular.js</li>
@@ -652,6 +653,69 @@ superman.name = 'Superman';
 				</section>
 
 				<section>
+					<h2>Ecosystème</h2>
+					<h5>Frameworks</h5>
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/jquery.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/backbone.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/AngularJS-large.png">
+					</div>
+				</section>
+
+				<section>
+					<h2>Ecosystème</h2>
+					<h5>Bonnes pratiques</h5>
+					<ul>
+						<li>
+							Pendant longtemps, le Javascript est resté très "artisanal"
+							<ul>
+								<li>Pas de tests automatisés</li>
+								<li>Pas d'outils pour récupérer automatiquement ses librairies</li>
+							</ul>
+						</li>
+						<li>Depuis quelques années, la communauté à développer tous les outils nécessaires !</li>
+						<li>Ces outils sont basés sur node.js</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Ecosystème</h2>
+					<h5>Bonnes pratiques</h5>
+					<ul>
+						<li>
+							Avant de livrer une application en production, il faut la "builder"
+							<ul>
+								<li>Concaténer ses fichiers javascript en un seul fichier</li>
+								<li>Minifier son code Javascript</li>
+								<li>Gzipper ses fichiers</li>
+								<li>Jouer les tests unitaires pour s'assurer de la stabilité du code</li>
+							</ul>
+						</li>
+						<li>Le but est de réduire le poids de la page, et donc améliorer l'expérience utilisateur !</li>
+						<li>Necessité <strong>d'automatiser</strong> ces tâches</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Ecosystème</h2>
+					<h5>Build</h5>
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/grunt.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/bower.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/gulp.png">
+					</div>
+				</section>
+
+				<section>
+					<h2>Ecosystème</h2>
+					<h5>Test unitaires</h5>
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/karma.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/jasmine.png">
+					</div>
+				</section>
+
+				<section>
 					<img src="images/AngularJS-large.png">
 				</section>
 
@@ -704,18 +768,20 @@ superman.name = 'Superman';
 					<ul>
 						<li>Contient les différents composants de votre application</li>
 						<li>Toute application contient au moins un module</li>
+						<li>On le déclare dans le code (avec l'attribut ng-app) et dans un fichier Javascript</li>
 					</ul>
 					<pre><code class="html">
 &lt;html ng-app="myApp"&gt;
   &lt;head&gt;
   &lt;/head&gt;
   &lt;body&gt;
-  	&lt;!-- Votre page html --&gt;
+    &lt;script type="text/javascript" src="angular.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="myApp.js"&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 					</code></pre>
 					<pre><code class="javascript">
-// Création d'un module
+// Création d'un module dans myApp.js
 var myAppModule = angular.module('myApp', []);
 					</code></pre>
 				</section>
@@ -743,8 +809,14 @@ console.log(myAppModule === module); // true
 				<section>
 					<h2>Angular.js</h2>
 					<h5>Contrôleurs</h5>
+					<img src="images/mvc.png">
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Contrôleurs</h5>
 					<ul>
-						<li>Un contrôleur contient la logique (le comportement) associé à votre page HTML</li>
+						<li>Un contrôleur contient la logique (le comportement) associé à votre page HTML (qui représente la vue du modèle M<strong>V</strong>C)</li>
 						<li>C'est un contrôleur conforme au pattern MV<strong>C</strong></li>
 						<li>Un contrôleur angular.js n'est rien d'autre qu'une fonction !</li>
 					</ul>
@@ -941,7 +1013,7 @@ angular.module('myApp')
 					<h5>Factory</h5>
 					<ul>
 						<li>La factory est exécutée la première fois où le composant est injecté</li>
-						<li>Le composant ne sera créé qu'une et une seule fois (singleton) : idéal pour partager des données entre contrîoleurs !</li>
+						<li>Le composant ne sera créé qu'une et une seule fois (singleton): idéal pour partager des données entre contrîoleurs !</li>
 						<li>Idéal pour factoriser du code entre contrôleur</li>
 					</code></pre>
 				</section>
@@ -951,11 +1023,10 @@ angular.module('myApp')
 					<h5>Service</h5>
 					<ul>
 						<li>Un service ressemble à une factory avec une différence : l'objet est déjà instanciée</li>
-						<li>On définit juste les attributs sur "this"</li>
+						<li>On définit juste les attributs sur l'objet "this" (qui représente l'objet instantiée)</li>
 						<li>Peut être vu comme un raccourci pour écrire une factory</li>
 					</ul>
 					<pre><code class="javascript">
-
 angular.module('myApp');
   .factory('myComponent', function () {
     this.helloWorld = function () {
@@ -976,6 +1047,7 @@ angular.module('myApp');
 					<ul>
 						<li>Un filtre est un composant permettant d'altérer l'affichage d'une valeur</li>
 						<li>Evalué lorsque le DOM est affiché / rafraichit (à chaque fois !)</li>
+						<li>Permet de bien séparer l'affichage de la manipulation des données</li>
 						<li>Un exemple est l'utilisation du filtre angular "date"</li>
 					</ul>
 					<pre><code class="html">
@@ -1002,8 +1074,10 @@ angular.module('myApp')
 								<li>number</li>
 								<li>currency</li>
 								<li>uppercase / lowercase</li>
+								<li>etc.</li>
 							</ul>
 						</li>
+						<li>La documentation est très bien faite !</li>
 					</ul>
 				</section>
 
@@ -1015,7 +1089,7 @@ angular.module('myApp')
 					</ul>
 					<pre><code class="html">
 &lt;div ng-conroller="myController"&gt;
-  &lt;Current date: {{ myDate }}&gt;
+  Current date: {{ myDate }}&gt;
 &lt;/div&gt;
 					</code></pre>
 					<pre><code class="javascript">
@@ -1036,7 +1110,7 @@ angular.module('myApp')
 					</ul>
 					<pre><code class="html">
 &lt;div ng-conroller="myController"&gt;
-  &lt;Current date: {{ myDate | date:'dd/MMMMM/yyyy' | uppercase }}&gt;
+  Current date: {{ myDate | date:'dd/MMMMM/yyyy' | uppercase }}&gt;
 &lt;/div&gt;
 					</code></pre>
 					<pre><code class="javascript">
@@ -1051,11 +1125,11 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Filtres</h5>
 					<ul>
-						<li>Ecrire un filtre customisé consiste à écrire une fonction !</li>
+						<li>Ecrire son propre filtre consiste "juste" à écrire une fonction !</li>
 					</ul>
 					<pre><code class="html">
 &lt;div ng-conroller="myController"&gt;
-  &lt;Use foo filter {{ myData | foo }}&gt;
+  foo filter {{ myData | foo }}&gt;
 &lt;/div&gt;
 					</code></pre>
 					<pre><code class="javascript">
@@ -1064,6 +1138,7 @@ angular.module('myApp')
     $scope.myData = 'hello';
   })
   .filter('foo', function () {
+    // On retourne une fonction qui sera exécutée à chaque rafraichissement
     return function (param) {
       return param + ' foo';
     };
