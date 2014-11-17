@@ -12,8 +12,8 @@
     </nav>
 
     <ul class="nav nav-pills" style="max-width: 210px; margin: 20px auto;">
-      <li role="presentation" class="active" ng-click="showPills('questions')"><a href="#">Questions</a></li>
-      <li role="presentation" ng-click="showPills('classement')"><a href="#">Classement</a></li>
+      <li role="presentation" ng-class="{active: pills == 'questions'}" ng-click="showPills('questions')"><a href="#">Questions</a></li>
+      <li role="presentation" ng-class="{active: pills == 'classement'}" ng-click="showPills('classement')"><a href="#">Classement</a></li>
     </ul>
 
     <div ng-show="pills == 'questions'">
@@ -67,9 +67,12 @@
   </body>
 
    <script type="text/javascript" src="angular.js"></script>
+   <script type="text/javascript" src="socket.io-1.2.0.js"></script>
    <script type="text/javascript">
     angular.module('myApp', [])
       .run(['$rootScope', function ($rootScope) {
+        $rootScope.socket = io();
+
         $rootScope.showPills = function (id) {
           $rootScope.pills = id;
         };
@@ -109,12 +112,43 @@
         };
       }])
 
-      .controller('ranksController', ['$scope', '$http', function ($scope, $http) {
+      .controller('ranksController', ['$scope', '$rootScope', '$http', function ($scope, $rootScope, $http) {
+        $scope.users = [];
+
         $http.get('/users')
           .success(function (data) {
-            console.log(arguments);
             $scope.users = data;
           });
+
+        var indexOfUser = function (user) {
+          for (var i = 0; i < $scope.users; ++i) {
+            var u = $scope.users[i];
+            if (u.login === user.login) {
+              return i;
+            }
+          }
+        };
+
+        var updateUser = function (user) {
+          var idx = indexOfUser(user);
+          if (idx >= 0) {
+            $scope.users[i] = user;
+          } else {
+            $scope.users.push(user);
+          }
+        };
+
+        $rootScope.socket.on('score:update', function(user) {
+          $scope.$apply(function () {
+            updateUser(user);
+          });
+        });
+
+        $rootScope.socket.on('user:new', function(user) {
+          $scope.$apply(function () {
+            updateUser(user);
+          });
+        });
       }]);
    </script>
 </html>

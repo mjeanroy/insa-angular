@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongo = require('mongodb');
+var socketIo = require('socket.io');
+var io;
 
 var app = express();
 
@@ -133,6 +135,7 @@ app.post('/register', function (req, res) {
       else {
         console.log('Login does not exist, create it');
         insertUser(login, function (err, user) {
+          io.emit('user:new', user[0]);
           res.status(200);
           res.json(user[0]);
         });
@@ -167,13 +170,17 @@ app.post('/tweets', function (req, res) {
   }
 });
 
-var onAnswer = function (res, expectedAnswer, answer, login) {
+var onAnswer = function (res, step, point, expectedAnswer, answer, login) {
   if (answer && answer.toLowerCase() === expectedAnswer) {
     findUser(login, function (err, user) {
       if (!user.step || user.step === 0) {
-        updateUser(user, 1, 10, function () {
+        updateUser(user, step, point, function () {
           res.status(200);
           res.status('Congratulations !');
+
+          user.step = step;
+          user.score += point;
+          io.emit('score:update', user);
         });
       } else {
         res.status(200);
@@ -188,7 +195,7 @@ var onAnswer = function (res, expectedAnswer, answer, login) {
 
 // # Question 1
 app.post('/q1', function (req, res) {
-  onAnswer(res, 'hello insa !', req.param('answer'), req.param('login'));
+  onAnswer(res, 1, 10, 'hello insa !', req.param('answer'), req.param('login'));
 });
 
 // # Question 2
@@ -216,4 +223,14 @@ var server = app.listen(3000, function () {
   var host = server.address().address
   var port = server.address().port
   console.log('App listening at http://%s:%s', host, port)
+});
+
+io = socketIo.listen(server);
+
+io.on('connection', function(socket) {
+  console.log('a user connected');
+
+  socket.on('disconnect', function() {
+    console.log('user disconnected');
+  });
 });
