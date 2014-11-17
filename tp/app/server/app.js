@@ -1,6 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var http = require('http');
+var socketIo = require('socket.io');
+var io;
 
 var app = express();
 
@@ -55,6 +57,10 @@ app.post('/tweets', function (req, res) {
 
     var httpreq = http.request(options, function(r) {
       r.pipe(res);
+
+      r.on('end', function() {
+        io.emit('tweet:new', data);
+      });
     });
 
     // write data to request body
@@ -69,4 +75,14 @@ var server = app.listen(4000, function () {
   var port = server.address().port;
   console.log('App listening at http://%s:%s', host, port)
   console.log('Proxied host: ', host);
+});
+
+io = socketIo.listen(server);
+
+io.on('connection', function(socket) {
+  console.log('a user connected');
+
+  socket.on('disconnect', function() {
+    console.log('user disconnected');
+  });
 });

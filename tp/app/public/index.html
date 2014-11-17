@@ -31,10 +31,17 @@
   </body>
 
    <script type="text/javascript" src="angular.js"></script>
+   <script type="text/javascript" src="socket.io-1.2.0.js"></script>
    <script type="text/javascript">
       angular.module('tweetInsa', [])
         .run(['$rootScope', function ($rootScope) {
-          // TODO connexion websocket
+          var socket = io();
+
+          socket.on('tweet:new', function(tweet) {
+            $rootScope.$apply(function () {
+              $rootScope.$broadcast('tweet:new', tweet);
+            });
+          });
         }])
 
         .controller('tweetsController', ['$scope', '$http', function ($scope, $http) {
@@ -49,15 +56,12 @@
               $scope.tweets = data;
             });
 
-          $scope.$on('app:tweet', function (event, tweet) {
+          $scope.$on('tweet:new', function (event, tweet) {
             addTweet(tweet);
           });
 
           $scope.submit = function (tweet) {
-            $http.post('/tweets', tweet)
-              .success(function (data) {
-                addTweet(data[0]);
-              });
+            $http.post('/tweets', tweet);
           };
         }]);
    </script>
