@@ -1,0 +1,12 @@
+{
+  "name": "insa-exercice",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.10.2",
+    "body-parser": "~1.9.2"
+  }
+}
