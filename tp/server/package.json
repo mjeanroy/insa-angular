@@ -1,0 +1,15 @@
+{
+  "name": "insa-angular",
+  "version": "1.0.0",
+  "description": "Insa Angular Backend",
+  "main": "app.js",
+  "author": "mjeanroy <mickael.jeanroy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.2",
+    "mongodb": "^1.4.20",
+    "mongoose": "^3.8.19",
+    "multer": "^0.1.6"
+  }
+}
