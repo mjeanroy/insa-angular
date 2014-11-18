@@ -177,7 +177,7 @@
 								<li>Serveur: V8 (NodeJS) ; Rhino (Java) etc.</li>
 							</ul>
 						</li>
-						<li>La gestion de la mémoire est géré grâce à un <strong>garbage collector</strong></li>
+						<li>La mémoire est gérée grâce à un <strong>garbage collector</strong></li>
 						<li>Langage <strong>dynamique</strong></li>
 						<li>Langage <strong>faiblement typé</strong></li>
 						<li>Langage <strong>orienté prototype</strong></li>
@@ -252,7 +252,7 @@ foo = 'string';
 console.log(typeof foo); // 'string'
 
 foo = true;
-console.log(typeof foo); // boolean
+console.log(typeof foo); // 'boolean'
 					</code></pre>
 				</section>
 
@@ -263,14 +263,14 @@ console.log(typeof foo); // boolean
 						<li>Une seule structure de données: les tableaux</li>
 						<li>Suite ordonnée d'éléments, chaque élément étant accessible par son index</li>
 						<li>La propriété "length" donne la taille du tableau</li>
-						<li>ECMAScript 6 apporte de nouvelles structures données: Set, WeakSet, Map, WeakMap</li>
+						<li>ECMAScript 6 apporte de nouvelles structures de données: Set, WeakSet, Map, WeakMap</li>
 					</ul>
 					<pre><code class="javascript">
 var foo = [1, 2, 3];
-console.log(typeof foo); // [1, 2, 3]
+console.log(foo); // [1, 2, 3]
 
 foo.push('string', true);
-console.log(typeof foo); // [1, 2, 3, 'string', true]
+console.log(foo); // [1, 2, 3, 'string', true]
 
 console.log(foo.length); // 5
 console.log(foo[4]); // true
@@ -283,7 +283,7 @@ console.log(foo[5]); // undefined
 					<h5>Les objets</h5>
 					<ul>
 						<li>En javascript, un objet est dynamique: on peut lui rajouter un attribut au runtime</li>
-						<li>Ni plus, ni moins qu'un tableau associatif</li>
+						<li>Ni plus, ni moins qu'une map clé valeur</li>
 					</ul>
 					<pre><code class="javascript">
 var foo = {};
@@ -382,7 +382,7 @@ console.log('' == 0);    // true
 					<h5>Spécificités</h5>
 					<ul>
 						<li>Pour simplifier: Javascript essaye de rapprocher les variables vers deux types identiques.</li>
-						<li>Cela peut amener à quelques spécificités un peu "étrange".</li>
+						<li>Cela peut amener à quelques spécificités un peu "étranges".</li>
 						<li>Simplifiez-vous la vie, <strong>utilisez toujours l'égalité stricte !</strong></li>
 					</ul>
 				</section>
@@ -443,8 +443,8 @@ foo(1, 2, 3);  // 1, 2, arguments = [1, 2, 3]
 					<ul>
 						<li>Une fonction peut être donnée en paramètre à une autre fonction</li>
 						<li>Une fonction peut retourner une autre fonction</li>
-						<li>En langage fonctionnel, de telles fonctions sont appelées <strong>fonction d'ordre supérieure</strong></li>
-						<li>Une fonction peut également être affecté à un <strong>attribut d'un objet</strong></li>
+						<li>En langage fonctionnel, de telles fonctions sont appelées <strong>fonctions d'ordre supérieur</strong></li>
+						<li>Une fonction peut également être affectée à un <strong>attribut d'un objet</strong></li>
 						<li>Avec Angular.js, on manipule et on écrit des fonctions <strong>tout le temps</strong></li>
 					</ul>
 				</section>
@@ -513,7 +513,7 @@ console.log(batman); // {name: "Batman", speak: function}
 console.log(typeof batman.speak); // 'function'
 
 // Exécution de la fonction
-batman.speak(); // 'wouaf !'
+batman.speak(); // 'I am Batman'
 					</code></pre>
 				</section>
 
@@ -598,7 +598,6 @@ console.log(batman.speak === superman.speak); // false
 						<li>Un prototype n'est rien de plus qu'une liste de propriétés (a.k.a un objet) <strong>partagé</strong> par toutes les instances d'un même type</li>
 					</ul>
 					<pre><code class="javascript">
-// Fonction nommée "foo"
 var Hero = function (name) {
   this.name = name;
 };
@@ -622,7 +621,6 @@ console.log(batman.speak === superman.speak); // true
 						<li>ECMAScript 5 introduit la fonction Object.create pour créer un objet en lui donnant son "prototype"</li>
 					</ul>
 					<pre><code class="javascript">
-// Fonction nommée "foo"
 var prototype = {
   speak: function () {
     console.log('I am ' + this.name);
@@ -673,7 +671,7 @@ superman.name = 'Superman';
 								<li>Pas d'outils pour récupérer automatiquement ses librairies</li>
 							</ul>
 						</li>
-						<li>Depuis quelques années, la communauté à développer tous les outils nécessaires !</li>
+						<li>Depuis quelques années, la communauté a développé tous les outils nécessaires !</li>
 						<li>Ces outils sont basés sur node.js</li>
 					</ul>
 				</section>
@@ -737,7 +735,7 @@ superman.name = 'Superman';
 						<li>Data binding</li>
 						<li>Single Page Application (SPA)</li>
 						<li>REST</li>
-						<li>Injection de dépendance (DI)</li>
+						<li>Dependency Injection (DI)</li>
 						<li>MVC</li>
 					</ul>
 				</section>
@@ -816,7 +814,7 @@ console.log(myAppModule === module); // true
 					<h2>Angular.js</h2>
 					<h5>Contrôleurs</h5>
 					<ul>
-						<li>Un contrôleur contient la logique (le comportement) associé à votre page HTML (qui représente la vue du modèle M<strong>V</strong>C)</li>
+						<li>Un contrôleur contient la logique (le comportement) associée à votre page HTML (qui représente la vue du modèle M<strong>V</strong>C)</li>
 						<li>C'est un contrôleur conforme au pattern MV<strong>C</strong></li>
 						<li>Un contrôleur angular.js n'est rien d'autre qu'une fonction !</li>
 					</ul>
@@ -838,7 +836,7 @@ angular.module('myApp')
 					<h5>Contrôleurs</h5>
 					<ul>
 						<li>Pour afficher des données gérées dans votre contrôleur, il faut les partager à la vue</li>
-						<li>Pour partager des données, on utilise l'object $scope</li>
+						<li>Pour partager des données, on utilise l'objet $scope</li>
 						<li>C'est le <strong>M</strong> du modèle <strong>M</strong>VC</li>
 					</ul>
 					<pre><code class="html">
@@ -858,10 +856,10 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Contrôleurs</h5>
 					<ul>
-						<li>L'object $scope a été instancié par Angular.js : notre application ne crée pas d'objets, mais <strong>demande à Angular.js de nous les fournir</strong></li>
+						<li>L'objet $scope a été instancié par Angular.js : notre application ne crée pas d'objets, mais <strong>demande à Angular.js de nous les fournir</strong></li>
 						<li>C'est <strong>l'injection de dépendance</strong></li>
 						<li>
-							C'est un concept qu'on retrouve dans beaucoup d'autres langages et framework
+							C'est un concept qu'on retrouve dans beaucoup d'autres langages et frameworks
 							<ul>
 								<li>Java: Spring, CDI</li>
 								<li>PHP: Symfony</li>
@@ -875,9 +873,9 @@ angular.module('myApp')
 					<h5>$scope</h5>
 					<ul>
 						<li>
-							L'object $scope est un objet très important</strong>
+							L'objet $scope est un objet très important</strong>
 							<ul>
-								<li>Il contient les données accessible depuis la page html</li>
+								<li>Il contient les données accessible depuis la page HTML</li>
 								<li>Il hérite (au sens héritage prototypal) de ses scopes parents</li>
 								<li>Il possède des méthodes utiles: $watch ; $on</li>
 								<li>Tout objet $scope hérite forcément du <strong>$rootScope</strong></li>
@@ -901,7 +899,9 @@ angular.module('myApp')
 angular.module('myApp')
   .controller('myController', ['$scope', function ($scope) {
     $scope.name = 'world';
-  }])
+  }]);
+
+angular.module('myApp')
   .controller('myOtherController', ['$scope', function ($scope) {
     console.log($scope.name); // world
   }]);
@@ -987,7 +987,7 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Factory</h5>
 					<ul>
-						<li>Une factory permet d'extraire des composant ré-utilisable</li>
+						<li>Une factory permet d'extraire des composants ré-utilisables</li>
 						<li>On peut le récupérer dans un contrôleur par injection de dépendance</li>
 						<li>C'est à la factory d'instancier le composant</li>
 					</ul>
@@ -1013,8 +1013,8 @@ angular.module('myApp')
 					<h5>Factory</h5>
 					<ul>
 						<li>La factory est exécutée la première fois où le composant est injecté</li>
-						<li>Le composant ne sera créé qu'une et une seule fois (singleton): idéal pour partager des données entre contrîoleurs !</li>
-						<li>Idéal pour factoriser du code entre contrôleur</li>
+						<li>Le composant ne sera créé qu'une et une seule fois (singleton): idéal pour partager des données entre contrôleurs !</li>
+						<li>Idéal pour factoriser du code entre contrôleurs</li>
 					</code></pre>
 				</section>
 
@@ -1022,18 +1022,18 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Service</h5>
 					<ul>
-						<li>Un service ressemble à une factory avec une différence : l'objet est déjà instanciée</li>
-						<li>On définit juste les attributs sur l'objet "this" (qui représente l'objet instantiée)</li>
+						<li>Un service ressemble à une factory avec une différence : l'objet est déjà instancié</li>
+						<li>On définit juste les attributs sur l'objet "this" (qui représente l'objet instancié)</li>
 						<li>Peut être vu comme un raccourci pour écrire une factory</li>
 					</ul>
 					<pre><code class="javascript">
 angular.module('myApp');
-  .factory('myComponent', function () {
+  .service('myComponent', function () {
     this.helloWorld = function () {
       return 'Hello World';
     };
   })
-  .controlle('myController', ['$scope', 'myComponent',
+  .controller('myController', ['$scope', 'myComponent',
     function ($scope, myComponent) {
       $scope.message = myComponent.helloWorld();
     }
@@ -1046,7 +1046,7 @@ angular.module('myApp');
 					<h5>Filtres</h5>
 					<ul>
 						<li>Un filtre est un composant permettant d'altérer l'affichage d'une valeur</li>
-						<li>Evalué lorsque le DOM est affiché / rafraichit (à chaque fois !)</li>
+						<li>Evalué lorsque le DOM est affiché / rafraichi (à chaque fois !)</li>
 						<li>Permet de bien séparer l'affichage de la manipulation des données</li>
 						<li>Un exemple est l'utilisation du filtre angular "date"</li>
 					</ul>
@@ -1057,7 +1057,7 @@ angular.module('myApp');
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controlle('myController', ['$scope', function ($scope) {
+  .controller('myController', ['$scope', function ($scope) {
     $scope.myDate = new Date();
   }]);
 					</code></pre>
@@ -1068,7 +1068,7 @@ angular.module('myApp')
 					<h5>Filtres</h5>
 					<ul>
 						<li>
-							Angular fournit une collection de filtre prêt à l'emploi
+							Angular fournit une collection de filtres prêts à l'emploi
 							<ul>
 								<li>date</li>
 								<li>number</li>
@@ -1094,7 +1094,7 @@ angular.module('myApp')
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controlle('myController', ['$scope', '$filter',
+  .controller('myController', ['$scope', '$filter',
     function ($scope, $filter) {
       $scope.myDate = $filter('date')(new Date(), 'dd/MM/yyyy');
     }
@@ -1115,7 +1115,7 @@ angular.module('myApp')
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controlle('myController', ['$scope', function ($scope) {
+  .controller('myController', ['$scope', function ($scope) {
     $scope.myDate = new Date();
   }]);
 					</code></pre>
