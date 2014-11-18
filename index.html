@@ -117,7 +117,7 @@
 					<div style="width: 100%; margin: 50px; 0;">
 						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/mongo.jpeg">
 						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/eslogo.png">
-						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/redis_logo.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/Cassandra_logo.png">
 					</div>
 
 					<div style="width: 100%; margin: 50px; 0;">
@@ -131,7 +131,7 @@
 					<h2>Programme</h2>
 					<ol>
 						<li>Javascript</li>
-						<li>Ecosystème</li>
+						<li>Ecosystème & Best practice</li>
 						<li>Angular.js</li>
 						<li>TP</li>
 						<li>Build your own Angular.js</li>
@@ -191,6 +191,7 @@
 						<li>Le plus basique: console.log</li>
 						<li>Permet de laisser des traces sur les appels</li>
 						<li>Attention: certaines vieilles versions d'IE ne le supportent pas</li>
+						<li>Chrome ajoute certaines features: console.table() / console.time() / console.memory etc.</li>
 					</ul>
 										<pre><code class="javascript">
 // Fonction nommée "foo"
@@ -308,7 +309,7 @@ console.log(foo['skills']); // ['Js', 'Java']
 					<h2>Javascript</h2>
 					<h5>Les objets</h5>
 					<ul>
-						<li>Il est possible d'itérer simplement sur tous les attributes d'un object</li>
+						<li>Il est possible d'itérer simplement sur tous les attributs d'un objet</li>
 					<pre><code class="javascript">
 var foo = {
   id: 1,
@@ -355,8 +356,9 @@ console.log([1, 2, 3] === [1, 2, 3]); // false
 						<li>Question: qu'affiche ce code ?</li>
 					</ul>
 					<pre><code class="javascript">
-console.log('' == '0');  // ???
-console.log('' == 0);    // ???
+console.log('' == '0'); // ???
+console.log('' == 0);   // ???
+console.log('0' == 0);  // ???
 					</code></pre>
 				</section>
 
@@ -365,8 +367,9 @@ console.log('' == 0);    // ???
 					<h5>Spécificités</h5>
 					WTF ??
 					<pre><code class="javascript">
-console.log('' == '0');  // false
-console.log('' == 0);    // true
+console.log('' == '0'); // false
+console.log('' == 0);   // true
+console.log('0' == 0);  // true
 					</code></pre>
 				</section>
 
@@ -689,7 +692,7 @@ superman.name = 'Superman';
 								<li>Jouer les tests unitaires pour s'assurer de la stabilité du code</li>
 							</ul>
 						</li>
-						<li>Le but est de réduire le poids de la page, et donc améliorer l'expérience utilisateur !</li>
+						<li>Le but est de garantir la non régression, de réduire le poids de la page, et donc améliorer l'expérience utilisateur !</li>
 						<li>Necessité <strong>d'automatiser</strong> ces tâches</li>
 					</ul>
 				</section>
@@ -924,44 +927,45 @@ angular.module('myApp')
       console.log(newValue, oldValue);
     });
   }]);
-					</code></pre>
-				</section>
+                  </code></pre>
+                </section>
 
 				<section>
 					<h2>Angular.js</h2>
 					<h5>$scope</h5>
 					<ul>
 						<li>La méthode $on permet d'écouter un évenement provenant d'un autre contrôleur</li>
+						<li>Permet de "dispatcher" des événements</li>
 						<li>Une façon de faire communiquer des contrôleurs (mais pas toujours la bonne façon)</li>
 					</ul>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', '$rootScope', function ($scope, $rootScope) {
-    $scope.name = 'world';
+  .controller('myController', ['$scope', '$rootScope',
+    function ($scope, $rootScope) {
+      $scope.$on('myEvent', function (event, param1) {
+        console.log(param1);
+      });
 
-    $scope.$on('myEvent', function (event, param1) {
-      console.log(param1);
-    });
-
-    $rootScope.$broadcast('myEvent', 'foo');
-  }]);
+      $rootScope.$broadcast('myEvent', 'foo');
+    }
+  ]);
 					</code></pre>
 				</section>
 
 				<section>
 					<h2>Angular.js</h2>
-					<h5>Formulaires</h5>
+					<h5>Formulaires & ng-model</h5>
 					<ul>
-						<li>Pour récupérer les valeurs saisies dans un formulaire, on utilisera l'attribut ng-model</li>
-						<li>Le double binding d'Angular.js nous permet de récupérer les saisies en quelques lignes</li>
+						<li>Pour récupérer les valeurs saisies dans un formulaire, on utilisera l'attribut <strong>ng-model</strong></li>
 						<li>Au fur et à mesure de la saisie, les variables du scope sont mises à jour par Angular.js</li>
+						<li>Si la valeur est mise à jour programmatiquement, la valeur du champ est mise à jour</li>
 						<li>C'est ce qu'on appelle le <strong>double binding</strong></li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Angular.js</h2>
-					<h5>Formulaires</h5>
+					<h5>Formulaires & ng-model</h5>
 					Exemple
 					<pre><code class="html">
 <div ng-controller="myController">
@@ -976,11 +980,88 @@ angular.module('myApp')
   .controller('myController', ['$scope', function ($scope) {
     $scope.name = 'hello world';
 
-    $scope.$on('name', function (newValue) {
+    $scope.$watch('name', function (newValue) {
       console.log(newValue);
     }):
   }]);
 					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Formulaires & ng-model</h5>
+					La directive <strong>ng-model</strong> est l'une des features les plus importantes d'Angular.js
+					<pre><code class="html">
+<div ng-controller="myController">
+  <input id="my-input" type="text" ng-model="name">
+</div>
+					</code></pre>
+					VS
+					<pre><code class="javascript">
+var myValue = 'foo';
+
+$('#my-input').on('keyup', function (e) {
+  myValue = $(this).val();
+});
+
+myValue = 'bar';
+$('#my-input').val(myValue);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Http</h5>
+					<ul>
+						<li>Angular.js fournit une api pour faire des requêtes HTTP</li>
+						<li>Prend en charge toutes les spécificités des navigateurs</li>
+						<li>Il suffit d'injecter le service <strong>$http</strong> dans un contrôleur</li>
+						<li>
+							Permet de faire toutes les requêtes "classique"
+							<ul>
+								<li>GET</li>
+								<li>POST</li>
+								<li>PUT</li>
+								<li>DELETE</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Http</h5>
+					Exemple : GET "/foo"
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('myController', ['$scope', '$http',
+    function ($scope, $http) {
+      $http.get('/foo')
+        .success(function (data) {
+          $scope.data = data;
+        })
+        .error(function (error) {
+          $scope.error = error;
+        });
+    }
+  ]);
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Http</h5>
+					<ul>
+						<li>
+							<strong>Attention</strong>, le résultat est <strong>asynchrone</strong>
+							<ul>
+								<li>Communication synchrone: vous demandez un résultat et l'avez "tout de suite" (i.e vous êtes bloqué tant que la réponse n'est pas là)</li>
+								<li>Communication asynchrone: vous demandez un résultat, mais vous pouvez passez à autre chose et vous serez averti de la réponse une fois disponible</li>
+							</ul>
+						</li>
+						<li>On récupère le résultat via un <strong>callback</strong> de succès</li>
+						<li>On récupère l'erreur via un <strong>callback</strong> d'erreur</li>
+					</ul>
 				</section>
 
 				<section>
@@ -1074,6 +1155,7 @@ angular.module('myApp')
 								<li>number</li>
 								<li>currency</li>
 								<li>uppercase / lowercase</li>
+								<li>orderBy</li>
 								<li>etc.</li>
 							</ul>
 						</li>
@@ -1151,8 +1233,8 @@ angular.module('myApp')
 					<h5>Directives</h5>
 					<ul>
 						<li>Les directives représentent une extention du DOM</li>
-						<li>Peut être utilisé comme un attribut ou une nouvelle balise</li>
-						<li>Les attributs ng-controller / ng-app sont des directives !</li>
+						<li>Peut être utilisée comme un attribut ou une nouvelle balise</li>
+						<li>Les attributs ng-controller / ng-app / ng-model sont des directives !</li>
 					</ul>
 				</section>
 
