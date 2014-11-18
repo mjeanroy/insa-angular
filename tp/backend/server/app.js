@@ -200,7 +200,7 @@ var onAnswer = function (res, step, point, expectedAnswer, answer, login) {
 
 // # Question 1
 app.post('/q1', function (req, res) {
-  onAnswer(res, 1, 10, 'hello insa !', req.param('answer'), req.param('login'));
+  onAnswer(res, 1, 10, 'hello world', req.param('answer'), req.param('login'));
 });
 
 // # Question 2
@@ -210,7 +210,7 @@ app.post('/q2', function (req, res) {
 
 // # Question 3
 app.post('/q3', function (req, res) {
-  onAnswer(res, 3, 10, 'i love filter', req.param('answer'), req.param('login'));
+  onAnswer(res, 3, 10, 'angular filter', req.param('answer'), req.param('login'));
 });
 
 // # Question 4
@@ -220,7 +220,7 @@ app.post('/q4', function (req, res) {
 
 // # Question 5
 app.post('/q5', function (req, res) {
-  onAnswer(res, 5, 50, 'directives is so easy', req.param('answer'), req.param('login'));
+  onAnswer(res, 5, 50, 'angular directive', req.param('answer'), req.param('login'));
 });
 
 
