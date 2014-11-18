@@ -5,6 +5,12 @@
   </head>
   <body>
     <!-- Demo -->
+    <div>
+      <input type="text" ng-model="foo">
+    </div>
+    <div ng-show="foo.length > 0">
+      Saisie: {{ foo }}
+    </div>
     <script type="text/javascript" src="angular.js"></script>
   </body>
 </html>
