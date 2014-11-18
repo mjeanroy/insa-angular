@@ -200,22 +200,22 @@ app.post('/q1', function (req, res) {
 
 // # Question 2
 app.post('/q2', function (req, res) {
-  // TODO
+  onAnswer(res, 2, 10, 'angular rocks', req.param('answer'), req.param('login'));
 });
 
 // # Question 3
 app.post('/q3', function (req, res) {
-  // TODO
+  onAnswer(res, 3, 10, 'i love filter', req.param('answer'), req.param('login'));
 });
 
 // # Question 4
 app.post('/q4', function (req, res) {
-  // TODO
+  onAnswer(res, 4, 20, 'socketio', req.param('answer'), req.param('login'));
 });
 
 // # Question 5
 app.post('/q5', function (req, res) {
-  // TODO
+  onAnswer(res, 5, 50, 'directives is so easy', req.param('answer'), req.param('login'));
 });
 
 

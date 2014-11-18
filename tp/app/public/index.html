@@ -11,20 +11,23 @@
       </div>
     </nav>
 
-    <div ng-controller="tweetsController">
+    <div ng-controller="tweetsController" style="max-width: 800px; margin: auto;">
       <form name="tweetForm">
         <div class="form-group" style="text-align: center">
-          Message :
-          <input class="form-control" type="text" ng-model="tweet.login" ng-required>
+          <input class="form-control" type="text" placeholder="Login" ng-model="tweet.login" ng-required>
+          <br>
           <textarea class="form-control" placeholder="Tweet" ng-model="tweet.message" ng-required></textarea>
+          <br>
           <button class="btn btn-success" ng-click="submit(tweet);" ng-disabled="tweetForm.$invalid">Tweet !</button>
         </div>
       </form>
 
       <div>
-        <div ng-repeat="tweet in tweets | orderBy:'-time'">
-          <p>{{ tweet.login }}</p>
-          <p>{{ tweet.message }}</p>
+        <div class="panel panel-default" ng-repeat="tweet in tweets | orderBy:'-time'">
+          <div class="panel-body">
+            <span class="label label-primary">{{ tweet.login | tweetFilter }}</span>
+            <span>{{ tweet.message }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -43,6 +46,26 @@
             });
           });
         }])
+
+        .filter('tweetFilter', function () {
+          return function (login) {
+            return '@' + login;
+          };
+        })
+
+        .directive('tweet', function () {
+          return {
+            restrict: 'E',
+            scope: {
+              tweet: '='
+            },
+            template: '' +
+              '<div class="panel-body">' +
+              '  <span class="label label-primary">{{ tweet.login | tweetFilter }}</span>' +
+              '  <span>{{ tweet.message }}</span>' +
+              '</div>'
+          };
+        })
 
         .controller('tweetsController', ['$scope', '$http', function ($scope, $http) {
           $scope.tweets = [];
