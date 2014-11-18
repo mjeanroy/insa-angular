@@ -71,6 +71,7 @@ var updateUser = function (user, step, addPoint, callback) {
       score: user.score + addPoint
     };
 
+    console.log('collection update');
     collection.update({ 'login': user.login }, { $set: query }, callback);
   });
 };
@@ -104,11 +105,11 @@ app.get('/users', function (req, res) {
 app.get('/questions', function (req, res) {
   res.status(200);
   res.json([
-    { id: 1, q: 'Quel est le message du tweet datant du 19 novembre à 8h00 ?'},
-    { id: 2, q: 'Quel est le message du tweet datant du 19 novembre à 8h00 ?'},
-    { id: 2, q: 'Quel est le message du tweet datant du 19 novembre à 8h00 ?'},
-    { id: 2, q: 'Quel est le message du tweet datant du 19 novembre à 8h00 ?'},
-    { id: 2, q: 'Quel est le message du tweet datant du 19 novembre à 8h00 ?'}
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 },
+    { id: 5 }
   ]);
 });
 
@@ -173,15 +174,19 @@ app.post('/tweets', function (req, res) {
 var onAnswer = function (res, step, point, expectedAnswer, answer, login) {
   if (answer && answer.toLowerCase() === expectedAnswer) {
     findUser(login, function (err, user) {
-      if (!user.step || user.step === 0) {
+      if (!user.step || user.step === (step - 1)) {
+        console.log('update user');
         updateUser(user, step, point, function () {
           res.status(200);
-          res.status('Congratulations !');
+          res.send('Congratulations !');
 
           user.step = step;
           user.score += point;
           io.emit('score:update', user);
         });
+      } else if (user.step < (step - 1)) {
+        res.status(400);
+        res.send('Please answer previous questions');
       } else {
         res.status(200);
         res.send('Congratulations !');

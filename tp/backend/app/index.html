@@ -34,7 +34,7 @@
         <div ng-show="user">
           <form ng-repeat="question in questions" style="max-width: 380px; margin: 30px auto;">
           	<div class="form-group" style="text-align: center">
-              Question #{{question.id}}: {{question.q}}
+              Question #{{question.id}}
               <input class="form-control" type="text" placeholder="Réponse" ng-model="question.$answer">
               <button class="btn" ng-class="{'btn-success': question.$success, 'btn-error': question.$error}" style="margin: 10px auto;" ng-disabled="!login || !question.$answer" ng-click="answer(login, question)">Enregistrer</button>
             </div>
@@ -55,7 +55,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="user in users">
+            <tr ng-repeat="user in users | orderBy:'-score'">
               <td>{{user.login}}</td>
               <td>{{user.step}}</td>
               <td>{{user.score}}</td>
@@ -121,7 +121,7 @@
           });
 
         var indexOfUser = function (user) {
-          for (var i = 0; i < $scope.users; ++i) {
+          for (var i = 0; i < $scope.users.length; ++i) {
             var u = $scope.users[i];
             if (u.login === user.login) {
               return i;
@@ -132,7 +132,7 @@
         var updateUser = function (user) {
           var idx = indexOfUser(user);
           if (idx >= 0) {
-            $scope.users[i] = user;
+            $scope.users[idx] = user;
           } else {
             $scope.users.push(user);
           }

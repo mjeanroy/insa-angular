@@ -1,0 +1,96 @@
+<!doctype html>
+<html ng-app="tweetInsa">
+  <head>
+  	<title>Insa Angular.js TP</title>
+  	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+      <div class="container">
+        <h3 style="color: #fff; text-align: center; margin-top: 13px;">Twitter Insa</h3>
+      </div>
+    </nav>
+
+    <div ng-controller="tweetsController" style="max-width: 800px; margin: auto;">
+      <form name="tweetForm">
+        <div class="form-group" style="text-align: center">
+          <input class="form-control" type="text" placeholder="Login" ng-model="tweet.login" ng-required>
+          <br>
+          <textarea class="form-control" placeholder="Tweet" ng-model="tweet.message" ng-required></textarea>
+          <br>
+          <button class="btn btn-success" ng-click="submit(tweet);" ng-disabled="tweetForm.$invalid">Tweet !</button>
+        </div>
+      </form>
+
+      <div>
+        <div class="panel panel-default" ng-repeat="tweet in tweets | orderBy:'-time'">
+          <div class="panel-body">
+            <span class="label label-primary">{{ tweet.login | tweetFilter }}</span>
+            <span>{{ tweet.message }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+   <script type="text/javascript" src="angular.js"></script>
+   <script type="text/javascript" src="socket.io-1.2.0.js"></script>
+   <script type="text/javascript">
+      angular.module('tweetInsa', [])
+        .run(['$rootScope', function ($rootScope) {
+          var socket = io();
+
+          socket.on('tweet:new', function(tweet) {
+            $rootScope.$apply(function () {
+              $rootScope.$broadcast('tweet:new', tweet);
+            });
+          });
+        }])
+
+        // TODO #3
+        .filter('tweetFilter', function () {
+          return function (login) {
+            return '@' + login;
+          };
+        })
+
+        // TODO #5
+        .directive('tweet', function () {
+          return {
+            restrict: 'E',
+            scope: {
+              tweet: '='
+            },
+            template: '' +
+              '<div class="panel-body">' +
+              '  <span class="label label-primary">{{ tweet.login | tweetFilter }}</span>' +
+              '  <span>{{ tweet.message }}</span>' +
+              '</div>'
+          };
+        })
+
+        .controller('tweetsController', ['$scope', '$http', function ($scope, $http) {
+          $scope.tweets = [];
+
+          var addTweet = function (tweet) {
+            $scope.tweets.push(tweet);
+          };
+
+          // TODO #1
+          $http.get('/tweets')
+            .success(function (data) {
+              $scope.tweets = data;
+            });
+
+          // TODO #3
+          $scope.$on('tweet:new', function (event, tweet) {
+            addTweet(tweet);
+          });
+
+          $scope.submit = function (tweet) {
+            // TODO #2
+            $http.post('/tweets', tweet);
+          };
+        }]);
+   </script>
+</html>
