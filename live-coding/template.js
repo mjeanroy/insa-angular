@@ -4,18 +4,37 @@
 
 var Scope = function () {
 
-  this.$$watchers = [];
+  // TODO WATCHERS
+  
 
-  this.$watch = function (watcherFn, listenerFn) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // this.$$watchers = [];
+
+
+  /*this.$watch = function (watcherFn, listenerFn) {
     this.$$watchers.push({
       watcherFn: function () {
         return this[watcherFn];
       }.bind(this),
       listenerFn: listenerFn
     });
-  };
+  };*/
 
-  this.$digest = function () {
+  /* this.$digest = function () {
     this.$$watchers.forEach(function (watcher) {
       var newValue = watcher.watcherFn();
       var oldValue = watcher.last;
@@ -23,16 +42,16 @@ var Scope = function () {
         watcher.listenerFn(newValue, oldValue);
       }
     });
-  };
+  };*/
 
-  this.$apply = function (func) {
+  /*this.$apply = function (func) {
     try {
       if (func) func();
     }
     finally {
       this.$digest();
     }
-  };
+  };*/
 };
 
 var $$directives = {
@@ -55,7 +74,11 @@ var $$directives = {
   }
 };
 
-var $compile = function (element, scope) {
+// TODO $compile
+
+
+
+/* var $compile = function (element, scope) {
   [].forEach.call(element.children, function (child) {
     $compile(child, scope);
   });
@@ -66,7 +89,7 @@ var $compile = function (element, scope) {
       directive(scope, element, element.attributes);
     }
   });
-};
+}; */
 
 var $rootScope = new Scope();
 $rootScope.name = 'hello';

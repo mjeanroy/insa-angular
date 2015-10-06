@@ -16,11 +16,15 @@ var port = '3000';
 var host = protocol + '://' + ip + ':' + port;
 var tweetUrl = host + '/tweets';
 
+var $$tweets = [{
+  login: 'foo',
+  message: 'hello world'
+}];
+
 app.get('/tweets', function (req, res) {
   console.log('GET: ', tweetUrl);
-  http.get(tweetUrl, function(r) {
-    r.pipe(res);
-  });
+  res.status(200);
+  res.json($$tweets);
 });
 
 app.post('/tweets', function (req, res) {
@@ -42,30 +46,11 @@ app.post('/tweets', function (req, res) {
       message: req.param('message')
     };
 
-    var str = JSON.stringify(data);
+    $$tweets.push(data);
 
-    var options = {
-      hostname: ip,
-      port: port,
-      path: '/tweets',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': str.length
-      }
-    };
-
-    var httpreq = http.request(options, function(r) {
-      r.pipe(res);
-
-      r.on('end', function() {
-        io.emit('tweet:new', data);
-      });
-    });
-
-    // write data to request body
-    httpreq.write(str);
-    httpreq.end();
+    io.emit('tweet:new', data);
+    res.status(200);
+    res.json(data);
   }
 });
 

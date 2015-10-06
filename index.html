@@ -74,8 +74,8 @@
 				<section data-background="images/angularjs.jpg">
 					<h3>Mickael Jeanroy</h3>
 					<h5>mickael.jeanroy@zenika.com</h5>
-					<h5>INSA LYON - IF 2014</h5>
-					<h5>19 / 11 / 2014</h5>
+					<h5>INSA LYON - IF 2015</h5>
+					<h5>13 / 10 / 2015</h5>
 				</section>
 
 				<section data-background="images/who-am-i.jpg" class="dark">
@@ -107,6 +107,35 @@
 				</section>
 
 				<section>
+					<h2>Programme</h2>
+					<ol>
+						<li>Zenika</li>
+						<li>Javascript - ES5 - ES6</li>
+						<li>Ecosystème & Industrialisation</li>
+						<li>Angular.js : principes</li>
+						<li>Angular.js : templates, contrôleurs, filtres</li>
+					</ol>
+
+					<div style="font-style: italic; margin-top: 50px;"><small>Du code, beaucoup de code !</small></div>
+				</section>
+
+				<section>
+					<h2><img style="height: 100px; border: none;" src="images/zenika.jpg"></h2>
+					<ul>
+						<li>SSII fondée en 2006</li>
+						<li>Présent à Paris, Lyon, Rennes, Nantes, Lille et Bordeau</li>
+						<li>Développement, Architecture, Formations</lI>
+						<li>4ème au classement "Great Place To Work" 2015</li>
+						<li>7ème au classement "Happy Trainees" 2015</li>
+					</ul>
+
+					<div style="width: 100%; margin: 50px; 0;">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/gptw.png">
+						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/logo-happy-trainees.png">
+					</div>
+				</section>
+
+				<section>
 					<h2><img style="height: 100px; border: none;" src="images/zenika.jpg"></h2>
 					<div style="width: 100%; margin: 50px; 0;">
 						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/java8.png">
@@ -128,16 +157,14 @@
 				</section>
 
 				<section>
-					<h2>Programme</h2>
-					<ol>
-						<li>Javascript</li>
-						<li>Ecosystème & Best practice</li>
-						<li>Angular.js</li>
-						<li>TP</li>
-						<li>Build your own Angular.js</li>
-					</ol>
-
-					<div style="font-style: italic; margin-top: 50px;"><small>Du code, beaucoup de code !</small></div>
+					<h2><img style="height: 100px; border: none;" src="images/zenika.jpg"></h2>
+					<h5>Stages (https://jobs.zenika.com/les-offres/)</h5>
+					<ul>
+						<li>Générateur Yeoman (Lyon) : participation active à un projet Open Source sur le projet de générateurs Yeoman.</li>
+						<li>Outil de gestion de Logs (Lyon) : Tenter de faire mieux que Logstash.</li>
+						<li>Conception et à la réalisation de projets internes basés sur les meilleurs outils et Frameworks Java (Paris).</li>
+						<li>Projet de R&D innovant en relation avec la Direction Technique (Paris).</li>
+					</ul>
 				</section>
 
 				<section>
@@ -150,19 +177,12 @@
 							<ul>
 								<li>ECMAScript 3 : 1999</li>
 								<li><strong>ECMAScript 5 : 2009</strong></li>
-								<li>ECMAScript 6 : encore en cours de développement !</li>
+								<li>ECMAScript 6 : 2015 !</li>
 							</ul>
 						</li>
-						<li>ECMAScript 5 est la version actuellement implémentée dans les navigateurs (Chrome, Firefox, Safari, IE10)</li>
-						<li>Souvent considéré comme un langage "sale", pas maintenable etc.</li>
-						<li>On va voir aujourd'hui qu'en connaissant ses faiblesses, il devient au contraire un langage très puissant.</li>
+						<li>ECMAScript 5 est la version la mieux implémentée dans les navigateurs (Chrome, Firefox, Safari, IE10)</li>
+						<li>ECMAScript 6 : besoin d'une phase de build (<strong>babel</strong>, traceur)</li>
 					</ul>
-				</section>
-
-				<section>
-					<h2>Javascript</h2>
-					<h5>Introduction</h5>
-					<img src="images/javascript-the-good-parts-the-definitive-guide.jpg">
 				</section>
 
 				<section>
@@ -174,7 +194,7 @@
 							S'exécute dans une VM (Virtual Machine)
 							<ul>
 								<li>Browser: V8 (Chrome) ; SpiderMonkey (Firefox) ; JavaScriptCore (Safari) etc.</li>
-								<li>Serveur: V8 (NodeJS) ; Rhino (Java) etc.</li>
+								<li>Serveur: V8 (Node.JS) ; Rhino / Nashorn (Java) etc.</li>
 							</ul>
 						</li>
 						<li>La mémoire est gérée grâce à un <strong>garbage collector</strong></li>
@@ -190,15 +210,20 @@
 					<ul>
 						<li>Le plus basique: console.log</li>
 						<li>Permet de laisser des traces sur les appels</li>
-						<li>Attention: certaines vieilles versions d'IE ne le supportent pas</li>
-						<li>Chrome ajoute certaines features: console.table() / console.time() / console.memory etc.</li>
+						<li>Certains navigateurs proposent des features
+							<ul>
+								<li>console.table()</li>
+								<li>console.time()</li>
+								<li>console.memory etc.</li>
+							</ul>
+						</li>
 					</ul>
-										<pre><code class="javascript">
+						<pre><code class="javascript">
 // Fonction nommée "foo"
 function foo() {
   console.log('hello world', 'hello bar');
 }
-					</code></pre>
+</code></pre>
 				</section>
 
 				<section>
@@ -206,9 +231,9 @@ function foo() {
 					<h5>Debug</h5>
 					<ul>
 						<li><strong>Chrome Dev Tools</strong> : le meilleur !</li>
-						<li>Firebug</li>
+						<li>Firebug / Firefox Developer Edition</li>
 						<li>Safari Web Inspector</li>
-						<li>Opera DragonFlyx</li>
+						<li>Opera DragonFly</li>
 						<li>IE : présent depuis IE9</li>
 					</ul>
 				</section>
@@ -229,6 +254,12 @@ function foo() {
 					<h2>Javascript</h2>
 					<h5>Introduction</h5>
 					<img src="images/dev-tools-3.png">
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Introduction</h5>
+					<img src="images/javascript-the-good-parts-the-definitive-guide.jpg">
 				</section>
 
 				<section>
@@ -264,7 +295,6 @@ console.log(typeof foo); // 'boolean'
 						<li>Une seule structure de données: les tableaux</li>
 						<li>Suite ordonnée d'éléments, chaque élément étant accessible par son index</li>
 						<li>La propriété "length" donne la taille du tableau</li>
-						<li>ECMAScript 6 apporte de nouvelles structures de données: Set, WeakSet, Map, WeakMap</li>
 					</ul>
 					<pre><code class="javascript">
 var foo = [1, 2, 3];
@@ -307,26 +337,6 @@ console.log(foo['skills']); // ['Js', 'Java']
 
 				<section>
 					<h2>Javascript</h2>
-					<h5>Les objets</h5>
-					<ul>
-						<li>Il est possible d'itérer simplement sur tous les attributs d'un objet</li>
-					<pre><code class="javascript">
-var foo = {
-  id: 1,
-  name: 'foo'
-};
-
-for (var key in foo) {
-  console.log(key + ' = ' + foo[key]);
-}
-
-// id = 1
-// name = foo
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Javascript</h2>
 					<h5>Spécificités</h5>
 					<ul>
 						<li>
@@ -353,7 +363,7 @@ console.log([1, 2, 3] === [1, 2, 3]); // false
 					<h2>Javascript</h2>
 					<h5>Spécificités</h5>
 					<ul>
-						<li>Question: qu'affiche ce code ?</li>
+						<li>Question : qu'affiche ce code ?</li>
 					</ul>
 					<pre><code class="javascript">
 console.log('' == '0'); // ???
@@ -385,8 +395,14 @@ console.log('0' == 0);  // true
 					<h5>Spécificités</h5>
 					<ul>
 						<li>Pour simplifier: Javascript essaye de rapprocher les variables vers deux types identiques.</li>
-						<li>Cela peut amener à quelques spécificités un peu "étranges".</li>
-						<li>Simplifiez-vous la vie, <strong>utilisez toujours l'égalité stricte !</strong></li>
+						<li>
+							Cela peut amener à quelques spécificités un peu "étranges"
+							<ul>
+								<li>Opérateur non transitif</li>
+								<li>Opérateur non réflexif</li>
+							</ul>
+						</li>
+						<li>Simplifiez-vous la vie : <strong>utilisez toujours l'égalité stricte !</strong></li>
 					</ul>
 				</section>
 
@@ -395,7 +411,7 @@ console.log('0' == 0);  // true
 					<h5>Un langage orienté fonctionnel</h5>
 					<ul>
 						<li>En javascript, les fonctions sont partout</li>
-						<li>Considéré comme un type comme un autre: le type "function" est un type comme un autre</li>
+						<li>Une fonction est un type comme un autre (objet de type "function")</li>
 						<li>Une fonction peut être nommée ou anonyme</li>
 					</ul>
 					<pre><code class="javascript">
@@ -447,8 +463,6 @@ foo(1, 2, 3);  // 1, 2, arguments = [1, 2, 3]
 						<li>Une fonction peut être donnée en paramètre à une autre fonction</li>
 						<li>Une fonction peut retourner une autre fonction</li>
 						<li>En langage fonctionnel, de telles fonctions sont appelées <strong>fonctions d'ordre supérieur</strong></li>
-						<li>Une fonction peut également être affectée à un <strong>attribut d'un objet</strong></li>
-						<li>Avec Angular.js, on manipule et on écrit des fonctions <strong>tout le temps</strong></li>
 					</ul>
 				</section>
 
@@ -484,25 +498,27 @@ foo(myFunc);
 // Fonction nommée "foo"
 // Cette fonction renvoie une fonction permettant de "logguer" le
 // contenu d'un tableau lorsqu'elle est exécutée
-function foo(array) {
-  return function () {
-    for (var i = 0; i < array.length; i++) {
-      console.log(array[i]);
-    }
+function add(op1) {
+  return function (op2) {
+    return op1 + op2;
   };
 }
 
-var displayArray1 = foo([1, 2, 3]);
-var displayArray2 = foo(['foo', 'bar']);
+var r1 = add(5)(10);
+console.log(r1); // 15
 
-displayArray1(); // 1, 2, 3
-displayArray2(); // 'foo', 'bar'
+var addFn = add(5);
+var r2 = addFn(10);
+console.log(r2); // 15
 					</code></pre>
 				</section>
 
 				<section>
 					<h2>Javascript</h2>
 					<h5>Un langage orienté fonctionnel</h5>
+					<ul>
+						<li>Une fonction peut également être affectée à un <strong>attribut d'un objet</strong></li>
+					</ul>
 					<pre><code class="javascript">
 // On déclare un objet avec une fonction comme attribut
 var batman = {
@@ -512,12 +528,21 @@ var batman = {
   }
 };
 
-console.log(batman); // {name: "Batman", speak: function} 
+console.log(batman); // {name: "Batman", speak: function}
 console.log(typeof batman.speak); // 'function'
 
 // Exécution de la fonction
 batman.speak(); // 'I am Batman'
 					</code></pre>
+				</section>
+
+				<section>
+					<h2>Javascript</h2>
+					<h5>Un langage orienté fonctionnel</h5>
+					<ul>
+						<li>Les fonctions sont le <strong>coeur</strong> du langage</li>
+						<li>Avec Angular.js, on manipule des fonctions <strong>tout le temps</strong></li>
+					</ul>
 				</section>
 
 				<section>
@@ -560,7 +585,7 @@ console.log(newArray); // 2, 4, 6
 // Réduit le contenu du tableau à une valeur
 // Ex: somme de tous les éléments du tableau
 var reduceValue = [1, 2, 3].reduce(function (memo, current) {
-  return memo += current;
+  return memo + current;
 }, 0);
 
 console.log(reduceValue); // 6
@@ -573,24 +598,14 @@ console.log(reduceValue); // 6
 					<ul>
 						<li>Le langage Javascript n'est pas un langage orienté objet</li>
 						<li>Mais, cela ne signifie pas qu'on ne peut utiliser des objets !</li>
-						<li>On peut déclarer des constructeurs, la forme la plus classique est d'instantier une fonction avec le mot clé "new"</li>
+						<li>
+							Cela nécessite la manipulation de prototype
+							<ul>
+								<li>Compliqué, surtout quand on débute</li>
+								<li>ECMAScript 6 vient masquer cette complexité grâce à l'introduction des classes</li>
+							</ul>
+						</li>
 					</ul>
-					<pre><code class="javascript">
-// Fonction nommée "foo"
-var Hero = function (name) {
-  this.name = name;
-  this.speak = function () {
-    console.log('I am ' + this.name);
-  };
-};
-
-var batman = new Hero('Batman');
-var superman = new Hero('Superman');
-
-batman.speak();   // I am Batman
-superman.speak(); // I am Superman
-console.log(batman.speak === superman.speak); // false
-					</code></pre>
 				</section>
 
 				<section>
@@ -621,36 +636,98 @@ console.log(batman.speak === superman.speak); // true
 					<h2>Javascript</h2>
 					<h5>Un langage orienté prototype</h5>
 					<ul>
-						<li>ECMAScript 5 introduit la fonction Object.create pour créer un objet en lui donnant son "prototype"</li>
+						<li>Chaque objet dispose d'un "prototype"</li>
+						<li>Un prototype n'est rien de plus qu'une liste de propriétés (a.k.a un objet) <strong>partagé</strong> par toutes les instances d'un même type</li>
 					</ul>
 					<pre><code class="javascript">
-var prototype = {
+var Hero = function (name) {
+  this.name = name;
+};
+
+Hero.prototype = {
   speak: function () {
     console.log('I am ' + this.name);
   }
 };
 
-var batman = Object.create(prototype);
-batman.name = 'Batman';
-
-var superman = Object.create(prototype);
-superman.name = 'Superman';
+var batman = new Hero('Batman');     // I am Batman
+var superman = new Hero('Superman'); // I am Superman
+console.log(batman.speak === superman.speak); // true
 					</code></pre>
 				</section>
 
 				<section>
-					<h2>Javascript</h2>
-					<h5>Un langage orienté prototype</h5>
+					<h2>JavaScript - ECMAScript 6</h2>
 					<ul>
+						<li>Introduit un ensemble de features visant à simplifier ECMAScript 5</li>
 						<li>
-							Le langage Javascript ne possède pas de "classe" au sens orienté objet.
+							Beaucoup de sucre syntaxique au dessus d'ES5
 							<ul>
-								<li>Pas d'héritage</li>
-								<li>Pas de visibilité "private" ou "protected"</li>
+								<li>Classes</li>
+								<li>Arrow Functions</li>
+								<li>Mots clés let et const</li>
+								<li>Etc.</li>
 							</ul>
 						</li>
-						<li>ECMAScript 6 introduit la notion de classes, mais reste limité à ce qu'on vient de voir (pas de visibilité, etc.)</li>
+						<li>Mais pas que : modules, iterators, generators, etc.</li>
 					</ul>
+				</section>
+
+				<section>
+					<h2>JavaScript - ECMAScript 6</h2>
+
+					<p>Pourquoi apprendre ES6 ?</p>
+
+					<ul>
+						<li>Nouveau standard : <strong>c'est l'avenir</strong></li>
+						<li>
+							Langage poussé sur les prochaines versions des librairies les plus populaires :
+							<ul>
+								<li>Angular 2</li>
+								<li>React</li>
+								<li>Twitter Bootstrap</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>JavaScript - ECMAScript 6</h2>
+
+					<p>Les classes</p>
+
+					<pre><code class="javascript">
+class Hero extends Human {
+  constructor(name) {
+		super();
+    this.name = name;
+  }
+
+  speak() {
+    console.log('I am ' + this.name);
+  }
+}
+
+var batman = new Hero('Batman');     // I am Batman
+var superman = new Hero('Superman'); // I am Superman
+console.log(batman.speak === superman.speak); // true
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>JavaScript - ECMAScript 6</h2>
+
+					<p>Arrow Functions</p>
+
+					<ul>
+						<li>Raccourci pour déclarer des fonctions anonymes</li>
+					</ul>
+					<pre><code class="javascript">
+let array = [1, 2, 3];
+
+array.forEach(x => console.log(x));
+array.map(x => x + 1);
+					</code></pre>
 				</section>
 
 				<section>
@@ -661,22 +738,6 @@ superman.name = 'Superman';
 						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/backbone.png">
 						<img class="icon icon-small" style="border: none; margin: 0 10px;" src="images/AngularJS-large.png">
 					</div>
-				</section>
-
-				<section>
-					<h2>Ecosystème</h2>
-					<h5>Bonnes pratiques</h5>
-					<ul>
-						<li>
-							Pendant longtemps, le Javascript est resté très "artisanal"
-							<ul>
-								<li>Pas de tests automatisés</li>
-								<li>Pas d'outils pour récupérer automatiquement ses librairies</li>
-							</ul>
-						</li>
-						<li>Depuis quelques années, la communauté a développé tous les outils nécessaires !</li>
-						<li>Ces outils sont basés sur node.js</li>
-					</ul>
 				</section>
 
 				<section>
@@ -759,7 +820,7 @@ superman.name = 'Superman';
 					Exemple: HTTP
 					<ul style="margin-top: 10px;">
 						<li>Client / Serveur : OK par définition</li>
-						<li>Stateless : OK par définition, même si ça peut être compliqué à cause des sessions</li>
+						<li>Stateless : OK par définition</li>
 						<li>Les échanges peuvent être mis en cach : OK via les headers HTTP</li>
 						<li>Identification de resources : OK via les URL</li>
 					</ul>
@@ -783,7 +844,23 @@ superman.name = 'Superman';
 					<h5>Bonnes pratiques</h5>
 					<ul>
 						<li>
-							Avant de livrer une application en production, il faut la "builder"
+							Pendant longtemps, le Javascript est resté très "artisanal"
+							<ul>
+								<li>Pas de tests automatisés</li>
+								<li>Pas d'outils pour récupérer automatiquement ses librairies</li>
+							</ul>
+						</li>
+						<li>Depuis quelques années, la communauté a développé tous les outils nécessaires !</li>
+						<li>Ces outils sont basés sur node.js</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Ecosystème</h2>
+					<h5>Bonnes pratiques</h5>
+					<ul>
+						<li>
+							En 2015, avant de livrer une application en production, il faut la "builder"
 							<ul>
 								<li>Concaténer ses fichiers javascript en un seul fichier</li>
 								<li>Minifier son code Javascript</li>
@@ -825,7 +902,7 @@ superman.name = 'Superman';
 					<ul>
 						<li>Angular.js est un framework javascript "full stack"</li>
 						<li>Développé par Google (Miško Hevery, Igor Minar, Vojta Jina, etc.)</li>
-						<li>Version 1.3.2</li>
+						<li>Version 1.5</li>
 						<li>Open source: https://github.com/angular/angular.js</li>
 					</ul>
 				</section>
@@ -846,6 +923,95 @@ superman.name = 'Superman';
 					<h2>Angular.js</h2>
 					<h5>Introduction</h5>
 					<div>DEMO</div>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Fonctionnement</h5>
+					<ul>
+						<li>Les données à afficher à l'écran sont définies sur un objet $scope</li>
+						<li>Lors d'un événement, la phase de digest va comparer l'état des variables</li>
+						<li>Les watchers permettent d'appliquer les modifications dans le DOM</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Fonctionnement</h5>
+					<div>Les watchers</div>
+					<ul>
+						<li>Simple fonctions exécutées pendant la phase de digest.</li>
+						<li>Permettent de déclencher un traitement à la modification d'une variable.</li>
+						<li>C'est le coeur d'angular.</li>
+						<li>Permet d'implémenter le data-binding :</li>
+					</ul>
+					<pre><code>
+$scope.$watch('foo', function(newValue, oldValue) {
+  element.innerHTML = newValue;
+});
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Fonctionnement</h5>
+					<ul>
+						<li>Les watchers sont exécutées lors de la phase de "digest"</li>
+					</ul>
+					<p><img class="icon" style="border: none; margin: 20px 10px;" src="images/concepts-runtime.png"></p>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Fonctionnement</h5>
+					<div>Le code de la fonction $apply est en fait très simple :</div>
+					<pre><code>
+$scope.$apply = function(fn) {
+  try {
+    fn();
+  } finally {
+    this.$digest();
+  }
+};
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Fonctionnement</h5>
+					<div>Zoom sur la fonction digest :</div>
+					<pre><code>
+$scope.$digest = function() {
+  this.$$watchers.forEach(function(watcher) {
+    var oldValue = watcher.last;
+    var newValue = watcher.watcherFn();
+
+    watcher.last = newValue;
+
+    if (oldValue !== newValue) {
+      watcher.listenerFn();
+    }
+  });
+};
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Fonctionnement</h5>
+					<p>C'est l'utilisation conjointe de ces trois fonctions qui permettent la "magie" d'Angular.js</p>
+					<p><i>C'est ce que nous allons implémenter dans l'exercice #1</i></p>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Exercice #1</h5>
+					<ul>
+						<li>Implémenter la fonction $apply (TODO #1).</li>
+						<li>Implémenter la fonction $digest (TODO #2).</li>
+						<li>Implémenter le watcher de la directive "ng-bind" (TODO #3).</li>
+						<li>Implémenter l'appel à $apply de la directive "ng-model" (TODO #4).</li>
+					</ul>
 				</section>
 
 				<section>
@@ -921,13 +1087,13 @@ console.log(myAppModule === module); // true
 						<li>Un contrôleur angular.js n'est rien d'autre qu'une fonction !</li>
 					</ul>
 					<pre><code class="html">
-<div ng-controller="myController">
+<div ng-controller="MyController">
   <p>Ma page HTML</p>
 </div>
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', function () {
+  .controller('MyController', function () {
     // Le code de votre contrôleur !
   });
 					</code></pre>
@@ -942,13 +1108,13 @@ angular.module('myApp')
 						<li>C'est le <strong>M</strong> du modèle <strong>M</strong>VC</li>
 					</ul>
 					<pre><code class="html">
-<div ng-controller="myController">
+<div ng-controller="MyController">
   <p>Hello {{ name }}</p>
 </div>
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
+  .controller('MyController', ['$scope', function ($scope) {
     $scope.name = 'world';
   }]);
 					</code></pre>
@@ -978,10 +1144,10 @@ angular.module('myApp')
 							L'objet $scope est un objet très important</strong>
 							<ul>
 								<li>Il contient les données accessible depuis la page HTML</li>
-								<li>Il hérite (au sens héritage prototypal) de ses scopes parents</li>
-								<li>Il possède des méthodes utiles: $watch ; $on</li>
+								<li>Il hérite de ses parents</li>
+								<li>Il possède les méthodes $watch ; $on ; $apply ; $digest</li>
 								<li>Tout objet $scope hérite forcément du <strong>$rootScope</strong></li>
-								<li>Toute application Angular.js possède <strong>un (et un seul) $rootscope</strong></li>
+								<li>Toute application Angular.js possède <strong>un (et un seul) $rootScope</strong></li>
 							</ul>
 						</li>
 					</ul>
@@ -992,19 +1158,19 @@ angular.module('myApp')
 					<h5>$scope</h5>
 					Chaque $scope hérite de son scope parent (défini par l'arborescence du dom)
 					<pre><code class="html">
-<div ng-controller="myController">
-  <div ng-controller="myOtherContoller">
+<div ng-controller="MyController">
+  <div ng-controller="MyOtherController">
   </div>
 </div>
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
+  .controller('MyController', ['$scope', function ($scope) {
     $scope.name = 'world';
   }]);
 
 angular.module('myApp')
-  .controller('myOtherController', ['$scope', function ($scope) {
+  .controller('MyOtherController', ['$scope', function ($scope) {
     console.log($scope.name); // world
   }]);
 					</code></pre>
@@ -1018,7 +1184,7 @@ angular.module('myApp')
 						<li>Une autre façon est d'utiliser la directive <strong>ng-bind</strong></li>
 					</ul>
 					<pre><code class="html">
-<div ng-controller="myController">
+<div ng-controller="MyController">
   Hello {{name}}
 
   Hello <span ng-bind="name"></span>
@@ -1026,30 +1192,11 @@ angular.module('myApp')
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
+  .controller('MyController', ['$scope', function ($scope) {
     $scope.name = 'world';
   }]);
 					</code></pre>
 				</section>
-
-				<section>
-					<h2>Angular.js</h2>
-					<h5>$scope</h5>
-					<ul>
-						<li>La méthode $watch permet d'exécuter du code quand une valeur change</li>
-						<li>Ressemble fortement à Object.observe</li>
-					</ul>
-					<pre><code class="javascript">
-angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
-    $scope.name = 'world';
-
-    $scope.$watch('name', function (newValue, oldValue) {
-      console.log(newValue, oldValue);
-    });
-  }]);
-                  </code></pre>
-                </section>
 
 				<section>
 					<h2>Angular.js</h2>
@@ -1075,6 +1222,29 @@ angular.module('myApp')
 
 				<section>
 					<h2>Angular.js</h2>
+					<h5>controller as</h5>
+					<ul>
+						<li>Avec l'arrivée d'Angular 2, la syntaxe controllerAs est préconisée</li>
+						<li>Les données sont précisées sur le contrôleur</li>
+						<li>Le contrôleur est vu comme une classe</li>
+					</ul>
+					<pre><code class="html">
+<div ng-controller="MyController as ctrl">
+  Hello {{ctrl.name}}
+
+  Hello <span ng-bind="ctrl.name"></span>
+</div>
+					</code></pre>
+					<pre><code class="javascript">
+angular.module('myApp')
+  .controller('MyController', function() {
+    this.name = 'world';
+  });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
 					<h5>Formulaires & ng-model</h5>
 					<ul>
 						<li>Pour récupérer les valeurs saisies dans un formulaire, on utilisera l'attribut <strong>ng-model</strong></li>
@@ -1089,22 +1259,18 @@ angular.module('myApp')
 					<h5>Formulaires & ng-model</h5>
 					Exemple
 					<pre><code class="html">
-<div ng-controller="myController">
+<div ng-controller="MyController as ctrl">
   <form>
-    <input type="text" ng-model="name">
-    Message: {{ name }}
+    <input type="text" ng-model="ctrl.name">
+    Message: {{ ctrl.name }}
   </form>
 </div>
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
-    $scope.name = 'hello world';
-
-    $scope.$watch('name', function (newValue) {
-      console.log(newValue);
-    }):
-  }]);
+  .controller('MyController', function() {
+    this.name = 'hello world';
+  });
 					</code></pre>
 				</section>
 
@@ -1156,14 +1322,16 @@ $('#my-input').val(myValue);
 					Exemple : GET "/foo"
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', '$http',
-    function ($scope, $http) {
+  .controller('MyController', ['$http',
+    function ($http) {
+      var vm = this;
+
       $http.get('/foo')
         .success(function (data) {
-          $scope.data = data;
+          vm.data = data;
         })
         .error(function (error) {
-          $scope.error = error;
+          vm.error = error;
         });
     }
   ]);
@@ -1192,7 +1360,6 @@ angular.module('myApp')
 					<ul>
 						<li>Une factory permet d'extraire des composants ré-utilisables</li>
 						<li>On peut le récupérer dans un contrôleur par injection de dépendance</li>
-						<li>C'est à la factory d'instancier le composant</li>
 					</ul>
 					<pre><code class="javascript">
 angular.module('myApp')
@@ -1203,9 +1370,9 @@ angular.module('myApp')
       }
     };
   })
-  .controller('myController', ['$scope', 'myComponent',
-    function ($scope, myComponent) {
-      $scope.message = myComponent.helloWorld();
+  .controller('MyController', ['myComponent',
+    function (myComponent) {
+      this.message = myComponent.helloWorld();
     }
   ]);
 					</code></pre>
@@ -1215,32 +1382,9 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Factory</h5>
 					<ul>
-						<li>La factory est exécutée la première fois où le composant est injecté</li>
-						<li>Le composant ne sera créé qu'une et une seule fois (singleton): idéal pour partager des données entre contrôleurs !</li>
-						<li>Idéal pour factoriser du code entre contrôleurs</li>
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Angular.js</h2>
-					<h5>Service</h5>
-					<ul>
-						<li>Un service ressemble à une factory avec une différence : l'objet est déjà instancié</li>
-						<li>On définit juste les attributs sur l'objet "this" (qui représente l'objet instancié)</li>
-						<li>Peut être vu comme un raccourci pour écrire une factory</li>
-					</ul>
-					<pre><code class="javascript">
-angular.module('myApp');
-  .service('myComponent', function () {
-    this.helloWorld = function () {
-      return 'Hello World';
-    };
-  })
-  .controller('myController', ['$scope', 'myComponent',
-    function ($scope, myComponent) {
-      $scope.message = myComponent.helloWorld();
-    }
-  ]);
+						<li>La factory est exécutée la première fois où le composant est injecté (lazy initialization).</li>
+						<li>Le composant ne sera créé qu'une et une seule fois (singleton).</li>
+						<li>La solution idéale pour factoriser du code entre contrôleurs</li>
 					</code></pre>
 				</section>
 
@@ -1249,20 +1393,19 @@ angular.module('myApp');
 					<h5>Filtres</h5>
 					<ul>
 						<li>Un filtre est un composant permettant d'altérer l'affichage d'une valeur</li>
-						<li>Evalué lorsque le DOM est affiché / rafraichi (à chaque fois !)</li>
 						<li>Permet de bien séparer l'affichage de la manipulation des données</li>
-						<li>Un exemple est l'utilisation du filtre angular "date"</li>
+						<li>Un exemple est l'utilisation du filtre "date"</li>
 					</ul>
 					<pre><code class="html">
-&lt;div ng-conroller="myController"&gt;
-  &lt;Current date: {{ myDate | date:'dd/MM/yyyy' }}&gt;
+&lt;div ng-conroller="MyController as ctrl"&gt;
+  &lt;Current date: {{ ctrl.myDate | date:'dd/MM/yyyy' }}&gt;
 &lt;/div&gt;
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
-    $scope.myDate = new Date();
-  }]);
+  .controller('MyController', function () {
+    this.myDate = new Date();
+  });
 					</code></pre>
 				</section>
 
@@ -1289,39 +1432,18 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Filtres</h5>
 					<ul>
-						<li>Un filtre peut également être utilisé dans un contrôleur</li>
-					</ul>
-					<pre><code class="html">
-&lt;div ng-conroller="myController"&gt;
-  Current date: {{ myDate }}&gt;
-&lt;/div&gt;
-					</code></pre>
-					<pre><code class="javascript">
-angular.module('myApp')
-  .controller('myController', ['$scope', '$filter',
-    function ($scope, $filter) {
-      $scope.myDate = $filter('date')(new Date(), 'dd/MM/yyyy');
-    }
-  ]);
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Angular.js</h2>
-					<h5>Filtres</h5>
-					<ul>
 						<li>Les filtres peuvent se chaîner (comme un pipe unix)</li>
 					</ul>
 					<pre><code class="html">
-&lt;div ng-conroller="myController"&gt;
-  Current date: {{ myDate | date:'dd/MMMMM/yyyy' | uppercase }}&gt;
+&lt;div ng-conroller="MyController as ctrl"&gt;
+  Current date: {{ ctrl.myDate | date:'dd/MMMMM/yyyy' | uppercase }}&gt;
 &lt;/div&gt;
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', ['$scope', function ($scope) {
-    $scope.myDate = new Date();
-  }]);
+  .controller('MyController', function () {
+    this.myDate = new Date();
+  });
 					</code></pre>
 				</section>
 
@@ -1329,22 +1451,21 @@ angular.module('myApp')
 					<h2>Angular.js</h2>
 					<h5>Filtres</h5>
 					<ul>
-						<li>Ecrire son propre filtre consiste "juste" à écrire une fonction !</li>
+						<li>Ecrire son propre filtre consiste "juste" à écrire une fonction</li>
 					</ul>
 					<pre><code class="html">
-&lt;div ng-conroller="myController"&gt;
-  foo filter {{ myData | foo }}&gt;
+&lt;div ng-conroller="MyController as ctrl"&gt;
+  foo filter {{ ctrl.myData | userName }}&gt;
 &lt;/div&gt;
 					</code></pre>
 					<pre><code class="javascript">
 angular.module('myApp')
-  .controller('myController', function ($scope) {
-    $scope.myData = 'hello';
+  .controller('MyController', function () {
+    this.myData = 'hello';
   })
-  .filter('foo', function () {
-    // On retourne une fonction qui sera exécutée à chaque rafraichissement
+  .filter('userName', function () {
     return function (param) {
-      return param + ' foo';
+      return '@' + param;
     };
   });
 					</code></pre>
@@ -1355,6 +1476,8 @@ angular.module('myApp')
 					<h5>Directives</h5>
 					<ul>
 						<li>Les directives représentent une extention du DOM</li>
+						<li>Permettent de centraliser la manipulation du DOM</li>
+						<li>Concept très proche des WebComponents</li>
 						<li>Peut être utilisée comme un attribut ou une nouvelle balise</li>
 						<li>Les attributs ng-controller / ng-app / ng-model sont des directives !</li>
 					</ul>
@@ -1363,6 +1486,7 @@ angular.module('myApp')
 				<section>
 					<h2>Angular.js</h2>
 					<h5>Directives</h5>
+					<p>Exemple de la directive ng-bind :</p>
 					<pre><code class="javascript">
 module.directive('ngBind', function () {
   return function (scope, element, attrs) {
@@ -1402,8 +1526,17 @@ module.directive('ngBind', function () {
 						<li>Pas de manipulation du DOM dans un contrôleur : c'est le rôle d'une directive !</li>
 						<li>La customisation de l'affichage doit être fait dans un filtre</li>
 						<li>Gardez vos contrôleurs simple et "petit"</li>
-						<li>Utiliser des services pour factoriser du code et extraire le code "compliqué" des contrôleurs</li>
+						<li>Utiliser des services pour factoriser du code et extraire le code métier des contrôleurs</li>
 						<li><strong>Faites des tests unitaires</strong> : jasmine + karma = :)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Angular.js</h2>
+					<h5>Best practices</h5>
+					<ul>
+						<li>Evitez les composants trop complexe : principe de responsabilité unique</li>
+						<li>Performances : évitez les pages trop lourdes</li>
 					</ul>
 				</section>
 
