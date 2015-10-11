@@ -1,0 +1,17 @@
+{
+  "name": "insa-angular",
+  "version": "0.1.0",
+  "authors": [
+    "Mickael Jeanroy <mickael.jeanroy@zenika.com>"
+  ],
+  "description": "Séminaire Angular.js INSA Lyon",
+  "keywords": [
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gulp": "3.9.0",
+    "gulp-bower": "0.0.10",
+    "browser-sync": "2.9.11"
+  }
+}
