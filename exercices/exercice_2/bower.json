@@ -1,0 +1,16 @@
+{
+  "name": "insa-angular-ex2",
+  "version": "0.1.0",
+  "authors": [
+    "Mickael Jeanroy <mickael.jeanroy@zenika.com>"
+  ],
+  "description": "Séminaire Angular.js INSA Lyon",
+  "keywords": [],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "bootstrap": "~3.3.5",
+    "socket.io-client": "~1.2.0"
+  }
+}
