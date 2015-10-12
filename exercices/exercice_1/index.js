@@ -89,17 +89,17 @@ var $$directives = {
 // - C'est une fonction récursive qui sera appelée sur tous les éléments
 //   de l'arbre du DOM.
 var $compile = function (scope, element) {
-  Array.prototype.forEach.call(element.children, function (children) {
-    $compile(scope, children);
-  });
+  for (var i = 0, s1 = element.children.length; i < s1; i++) {
+    $compile(scope, element.children[i]);
+  }
 
-  Array.prototype.forEach.call(element.attributes, function (attribute) {
-    var attr = attribute.name;
+  for (var k = 0, s2 = element.attributes.length; k < s2; k++) {
+    var attr = element.attributes[k].name;
     var directive = $$directives[attr];
     if (directive) {
       directive(scope, element, element.attributes);
     }
-  });
+  }
 };
 
 
