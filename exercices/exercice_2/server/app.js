@@ -1,72 +1,70 @@
+// Simple Backend
 var express = require('express');
 var bodyParser = require('body-parser');
 var http = require('http');
+var cors = require('cors');
 var socketIo = require('socket.io');
+var config = require('./config.json');
 var io;
 
 var app = express();
 
 app.use(express.static(__dirname + '/../public'));
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json());
+app.use(cors());
 
-var protocol = 'http';
-var ip = '127.0.0.1';
-var port = '3000';
-var host = protocol + '://' + ip + ':' + port;
-var tweetUrl = host + '/tweets';
+var port = config.port;
+var host = config.backend + ':' + port;
+var tweets = config.tweets;
 
-var $$tweets = [{
-  login: 'foo',
-  message: 'hello world'
+var $tweets = [{
+  login: 'mjeanroy',
+  message: 'hello insa '
 }];
 
-app.get('/tweets', function (req, res) {
-  console.log('GET: ', tweetUrl);
+app.get(tweets, function (req, res) {
+  console.log('GET: ', tweets);
   res.status(200);
-  res.json($$tweets);
+  res.json($tweets);
 });
 
-app.post('/tweets', function (req, res) {
-  console.log('POST: ', tweetUrl);
+app.post(tweets, function (req, res) {
+  console.log('POST: ', tweets);
 
   var login = req.param('login');
   var message = req.param('message');
+  var isValid = !!login && !!message && message.length <= 140;
 
-  if (!login || !message) {
+  if (!isValid) {
     res.status(400);
     res.json({
       status: 400,
       message: 'Please send a login and a message'
     });
-  }
-  else {
+  } else {
     var data = {
-      login: req.param('login'),
-      message: req.param('message')
+      login: login,
+      message: message
     };
 
-    $$tweets.push(data);
+    $tweets.push(data);
 
     io.emit('tweet:new', data);
-    res.status(200);
+    res.status(201);
     res.json(data);
   }
 });
 
 // Start server
-var server = app.listen(4000, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('App listening at http://%s:%s', host, port)
-  console.log('Proxied host: ', host);
+var server = app.listen(port, function () {
+  console.log('App listening on port', server.address().port);
 });
 
+// Start WebSocket
 io = socketIo.listen(server);
 
 io.on('connection', function(socket) {
-  console.log('a user connected');
-
+  console.log('user connected');
   socket.on('disconnect', function() {
     console.log('user disconnected');
   });

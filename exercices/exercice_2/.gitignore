@@ -1,0 +1,4 @@
+# Ignore node & bower files
+
+vendors/
+node_modules/

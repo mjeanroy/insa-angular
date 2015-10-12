@@ -11,21 +11,21 @@
       </div>
     </nav>
 
-    <div ng-controller="tweetsController" style="max-width: 800px; margin: auto;">
+    <div ng-controller="TweetsController as tweetCtrl" style="max-width: 800px; margin: auto;">
       <form name="tweetForm">
         <div class="form-group" style="text-align: center">
           <!-- TODO Mettre les directives ng-model pour binder les saisies utilisateurs. -->
-          <input class="form-control" type="text" placeholder="Login" ng-model="foo" ng-required>
+          <input name="tweetLogin" class="form-control" type="text" placeholder="Login" ng-model="tweetCtrl.login" required>
           <br>
-          <textarea class="form-control" placeholder="Tweet" ng-model="bar" ng-required></textarea>
+          <textarea name="tweetContent" class="form-control" placeholder="Tweet" ng-model="tweetCtrl.message" required maxlength="140"></textarea>
           <br>
-          <button class="btn btn-success" ng-click="submit(tweet);" ng-disabled="tweetForm.$invalid">Tweet !</button>
+          <button id="foo" class="btn btn-success" ng-click="tweetCtrl.submit(tweet);" ng-disabled="tweetForm.$invalid">Tweet !</button>
         </div>
       </form>
 
       <div>
         <div class="panel panel-default">
-          <div class="panel-body" ng-repeat="tweet in tweets | orderBy:'-time'">
+          <div class="panel-body" ng-repeat="tweet in tweetCtrl.tweets | orderBy:'-time'">
             <!-- TODO Remplacer pour afficher le login et le message du tweet. -->
             <tweet data="tweet"></tweet>
           </div>
@@ -34,8 +34,7 @@
     </div>
   </body>
 
-  <!-- TODO rajouter la balise script pour ajouter "angular.js" (présent dans /angular.js) -->
-  <script type="text/javascript" src="vendors/angular/angular.js"></script>
-  <script type="text/javascript" src="vendors/socket.io/socket-io.js"></script>
+  <!-- TODO #1 rajouter la balise script pour ajouter "angular.js" (présent dans /vendors/angular/angular.js) -->
+  <script type="text/javascript" src="vendors/socket.io-client/socket.io.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
 </html>
