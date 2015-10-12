@@ -12,6 +12,76 @@
 
 #### Single Page Application
 
+- Ces librairies visent à couvrir les besoins d'une application Web moderne :
+  - Simplification des accès au DOM.
+  - Mise en place d'une Single Page Application.
+  - Interface avec une API REST.
+
+---
+
+## Ecosystème
+
+#### DOM
+
+- DOM : Document Object Model.
+- Page HTML vue sous la forme d'un arbre DOM.
+- Le parcours de ce type d'arbre se fait en `javascript`.
+  - Fastidieux.
+  - Verbeux.
+  - Différence entre les navigateurs.
+
+---
+
+## Ecosystème
+
+#### DOM
+
+Exemple en pur javascript :
+
+```html
+<div id="foo">
+  <span class="message">Hello</span>
+  <input name="inputName">
+</div>
+```
+
+```javascript
+var div = document.getElementById('foo');
+var span = document.getElementsByClassName('message')[0];
+var input = document.querySelector('[name="inputName"]');
+```
+
+---
+
+## Ecosystème
+
+#### DOM
+
+Exemple avec jQuery :
+
+```html
+<div id="foo">
+  <span class="message">Hello</span>
+  <input name="inputName">
+</div>
+```
+
+```javascript
+var div = $('#foo');
+var span = $('.message');
+var input = $('[name="inputName"]');
+```
+
+---
+
+<img src="images/questions.jpg">
+
+---
+
+## Ecosystème
+
+#### Single Page Application
+
 Wikipédia : Une application web monopage (en anglais single-page application ou SPA) est une application web accessible via une page web unique. Le but est d'éviter le chargement d'une nouvelle page à chaque action demandée, et de fluidifier ainsi l'expérience utilisateur.
 
 ---
