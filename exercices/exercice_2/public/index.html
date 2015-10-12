@@ -26,8 +26,14 @@
       <div>
         <div class="panel panel-default">
           <div class="panel-body" ng-repeat="tweet in tweetCtrl.tweets | orderBy:'-time'">
-            <!-- TODO Remplacer pour afficher le login et le message du tweet. -->
-            <tweet data="tweet"></tweet>
+            <!-- TODO #2 Remplacer pour afficher le login et le message du tweet. -->
+            <div>
+              <!-- Affiche le login -->
+              <span class="label label-primary">Login</span>
+
+              <!-- Affiche le message -->
+              <span>Message</span>
+            </div>
           </div>
         </div>
       </div>
