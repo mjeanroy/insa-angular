@@ -1,8 +1,10 @@
-## Séminaire Angular
+![AngularJS](./images/AngularJS-large.png)
+
+## Introduction
 
 Pour l'ensemble des exercices, **se reporter aux slides** pour des exemples de solutions / d'implémentation.
 
-### Exercice #1
+## Exercice #1
 
 Le but de cet exercice sera de comprendre le coeur du fonctionnement d'Angular.js. A l'issue de cet exercice, l'objectif sera d'avoir une bonne connaissance de :
 - La phase de `digest` d'Angular.js.
@@ -11,7 +13,7 @@ Le but de cet exercice sera de comprendre le coeur du fonctionnement d'Angular.j
 
 Ce TP est découpé en plusieurs TODO détaillés par la suite.
 
-#### TODO #1
+### TODO #1
 
 La première étape consiste à implémenter la fonction `$apply`. Cette fonction est primordiale dans Angular.js car elle permet de déclencher la phase de `digest` au coeur du data binding du framework.
 
@@ -21,7 +23,7 @@ L'implémentation de cette fonction se fait en deux étapes :
 
 Se reporter aux slides pour un exemple d'implémentation.
 
-#### TODO #2
+### TODO #2
 
 La deuxième étape consiste à implémenter la phase de `digest`. L'algorithme à implémenter consiste à :
 - Parcourir tous les watchers présents sur le scope.
@@ -30,7 +32,7 @@ La deuxième étape consiste à implémenter la phase de `digest`. L'algorithme 
 
 Se reporter aux slides pour un exemple d'implémentation.
 
-#### TODO #3
+### TODO #3
 
 La troisième étape consiste à implémenter la directive `ng-bind`. Cette directive permet de mettre à jour le DOM lors d'un changement de variable (les changements étant détectés via la fonction `$watch` déjà implémentée).
 
@@ -44,7 +46,7 @@ Pour rappel, la mise à jour du DOM peut se faire en écrivant sur la propriét�
 element.innerHTML = 'Hello World';
 ```
 
-#### TODO #4
+### TODO #4
 
 Enfin, la dernière étape consiste à implémenter la directive `ng-model` :
 - Dans l'événement `keyup`, récupérer la valeur du champ de saisie.
@@ -58,9 +60,7 @@ element.addEventListener('keyup', function(e) {
 });
 ```
 
-<div style="page-break-after: always;"></div>
-
-### Exercice #2
+## Exercice #2
 
 Le deuxième exercice va consister à mettre en place un "tweeter like".
 
@@ -73,14 +73,14 @@ node.exe server/app.js
 
 Le message suivant devrait apparaître dans la console : "App listening on port 4000"
 
-#### TODO #1
+### TODO #1
 
 La première étape consiste à ajouter Angular.js dans l'application :
 - Dans le répertoire `public`, ouvrir le fichier `index.html`.
 - Avant l'import du fichier `app.js`, ajouter l'import du fichier `angular.js`.
 - Rafraichir l'écran, et vérifier qu'aucune erreur n'apparait dans la console.
 
-#### TODO #2
+### TODO #2
 
 La deuxième étape consiste à récupérer les tweets via un appel http et à les afficher à l'écran :
 - Dans le répertoire `public/js`, ouvrir le fichier `app.js`.
@@ -95,7 +95,7 @@ Ensuite, il faut les afficher à l'écran :
 
 Rafraichir l'écran pour vérifier que le tweet s'affiche correctement.
 
-#### TODO #3
+### TODO #3
 
 Nous allons maintenant permettre l'enregistrement d'un tweet :
 - Dans le répertoire `public`, ouvrir le fichier `index.html` :
@@ -108,7 +108,7 @@ Nous allons maintenant permettre l'enregistrement d'un tweet :
 
 Rafraichir l'écran et essayer de tweeter !
 
-#### TODO #4
+### TODO #4
 
 La troisième étape consiste à afficher le login utilisateur au format tweeter, c'est à dire préfixé par `@` :
 - Dans le répertoire `public/js`, ouvrir le fichier `app.js`.
@@ -120,7 +120,7 @@ Ensuite, il faut utiliser ce filtre :
 
 Rafraichir l'écran pour vérifier que le login est bien préfixé par le caractère `@`.
 
-#### TODO #5
+### TODO #5
 
 Afin d'apporter plus d'interaction, nous allons utiliser l'API WebSocket afin de rafraichir automatiquement l'écran lorsqu'un tweet a été sauvegardé par un utilisateur :
 - Dans le répertoire `public/js`, ouvrir le fichier `app.js`.
@@ -136,7 +136,7 @@ $scope.$on('tweet:new', function(event, tweet) {
 
 Comme les créations de tweet sont captées via l'API WebSocket, la fonction de `success` associée à la sauvegarde d'un tweet devient inutile.
 
-#### TODO #6
+### TODO #6
 
 Afin de centraliser l'affichage d'un tweet, nous allons utiliser une directive customisée pour l'afficher à l'écran :
 - Dans le répertoire `public/js`, ouvrir le fichier `app.js`.
