@@ -6,6 +6,7 @@
 - Développé par Google (Miško Hevery, Igor Minar, Vojta Jina, etc.)
 - Version 1.5
 - Open source: https://github.com/angular/angular.js
+- 43 000 stars sur GitHub
 
 ---
 
