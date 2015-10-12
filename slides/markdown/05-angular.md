@@ -1,140 +1,5 @@
 ## Angular.js
 
-#### by Google
-
-- Angular.js est un framework javascript "full stack"
-- Développé par Google (Miško Hevery, Igor Minar, Vojta Jina, etc.)
-- Version 1.5
-- Open source: https://github.com/angular/angular.js
-
----
-
-## Angular.js
-
-#### Introduction
-
-- Data Binding
-- Single Page Application (SPA)
-- REST
-- Dependency Injection (DI)
-- MVC
-
----
-
-## Angular.js
-
-#### Introduction
-
-DEMO
-
----
-
-## Angular.js
-
-#### Fonctionnement
-
-- Les données à afficher à l'écran sont définies sur un objet `$scope`
-- Lors d'un événement, la phase de digest va comparer l'état des variables
-- Les watchers permettent d'appliquer les modifications dans le DOM
-
----
-
-## Angular.js
-
-#### Fonctionnement
-
-Les watchers
-
-- Simple fonctions exécutées pendant la phase de digest.
-- Permettent de déclencher un traitement à la modification d'une variable.
-- C'est le coeur d'angular.
-- Permet d'implémenter le data-binding.
-
-```javascript
-$scope.$watch('foo', function(newValue, oldValue) {
-  element.innerHTML = newValue;
-});
-```
-
----
-
-## Angular.js
-
-#### Fonctionnement
-
-- Les watchers sont exécutées lors de la phase de "digest"
-
-<img class="icon" style="border: none; margin: 20px 10px;" src="images/concepts-runtime.png">
-
----
-
-## Angular.js
-
-#### Fonctionnement
-
-Le code de la fonction $apply est en fait très simple :
-
-```javascript
-$scope.$apply = function(fn) {
-  try {
-    fn();
-  } finally {
-    this.$digest();
-  }
-};
-```
-
----
-
-## Angular.js
-
-#### Fonctionnement
-
-Zoom sur la fonction digest :
-
-```javascript
-$scope.$digest = function() {
-  this.$$watchers.forEach(function(watcher) {
-    var oldValue = watcher.last;
-    var newValue = watcher.watcherFn();
-
-    watcher.last = newValue;
-
-    if (oldValue !== newValue) {
-      watcher.listenerFn();
-    }
-  });
-};
-```
-
----
-
-## Angular.js
-
-#### Fonctionnement
-
-- C'est l'utilisation conjointe de ces trois fonctions qui permettent la "magie" d'Angular.js
-- *C'est ce que nous allons implémenter dans l'exercice #1*
-
----
-
-<img src="images/questions.jpg">
-
----
-
-## Angular.js
-
-#### Exercice #1
-
-- Implémenter la fonction `$apply` (todo #1).
-- Implémenter la fonction `$digest` (todo #2).
-- Implémenter le watcher de la directive `ng-bind` (todo #3).
-- Implémenter l'appel à `$apply` de la directive `ng-model` (todo #4).
-
----
-
-## Angular.js
-
 #### Composants
 
 - Modules
@@ -157,7 +22,7 @@ $scope.$digest = function() {
 
 ```javascript
 // Création d'un module dans app.js
-var myAppModule = angular.module('myApp', []);
+angular.module('myApp', []);
 ```
 
 ---
@@ -405,8 +270,8 @@ angular.module('myApp')
 La directive **ng-model** est l'une des features les plus importantes d'Angular.js
 
 ```html
-<div ng-controller="myController">
-  <input id="my-input" type="text" ng-model="name">
+<div ng-controller="MyController as ctrl">
+  <input id="my-input" type="text" ng-model="ctrl.name">
 </div>
 ```
 VS
@@ -425,6 +290,23 @@ $('#my-input').val(myValue);
 
 ## Angular.js
 
+#### Formulaires & ng-model
+
+Permet de faire de la validation à partir des attributs "classiques" : `required`, `maxlength`, `pattern`, etc.
+
+```html
+<div ng-controller="MyController as ctrl">
+  <input id="my-input" type="text" name="inputName"
+         ng-model="ctrl.name"
+         required
+         maxlength="100">
+</div>
+```
+
+---
+
+## Angular.js
+
 #### Http
 
 - Angular.js fournit une api pour faire des requêtes HTTP
@@ -432,10 +314,10 @@ $('#my-input').val(myValue);
 - Prend en charge toutes les spécificités des navigateurs
 - Il suffit d'injecter le service **$http** dans un contrôleur
 - Permet de faire toutes les requêtes "classique"
-  - GET
-  - POST
-  - PUT
-  - DELETE
+  - `GET`
+  - `POST`
+  - `PUT`
+  - `DELETE`
 
 ---
 
@@ -473,6 +355,62 @@ angular.module('myApp')
   - Communication asynchrone: vous demandez un résultat, mais vous pouvez passez à autre chose et vous serez averti de la réponse une fois disponible
 - On récupère le résultat via un **callback** de succès
 - On récupère l'erreur via un **callback** d'erreur
+
+---
+
+## Angular.js
+
+#### Http
+
+Exemple de récupération des tweets :
+
+```html
+<div ng-controller="TweetController as ctrl">
+  <div ng-repeat="tweet as ctrl.tweets">{{ tweet.message }}</div>
+</div>
+```
+
+```javascript
+angular.module('app').controller('TweetController', function($http) {
+  var vm = this;
+
+  $http.get('/tweets')
+    .success(function(data) {
+      vm.tweets = data;
+    });
+});
+```
+
+---
+
+## Angular.js
+
+#### Http
+
+Exemple de création d'un tweet :
+
+```html
+<div ng-controller="TweetController as ctrl">
+  <form name="tweetForm" ng-submit="ctrl.submit()">
+    <input ng-model="ctrl.login" required>
+    <textarea ng-model="ctrl.message" maxlength="140"></textarea>
+    <button ng-disabled="tweetForm.$invalid">Tweeter !</button>
+  </form>
+</div>
+```
+
+```javascript
+angular.module('app').controller('TweetController', function($http) {
+  var vm = this;
+
+  vm.submit = function() {
+    var tweet = { login: vm.login, message: vm.message };
+    $http.post('/tweets', tweet)
+      .success(function() {
+        console.log('Success !');
+      });
+  };
+```
 
 ---
 
@@ -578,11 +516,11 @@ angular.module('myApp')
 
 #### Filtres
 
-Ecrire son propre filtre consiste "juste" à écrire une fonction</li>
+Ecrire son propre filtre consiste "juste" à écrire une fonction
 
 ```html
 <div ng-conroller="MyController as ctrl">
-  foo filter {{ ctrl.myData | userName }}&gt;
+  {{ ctrl.myData | uppercase }}&gt;
 </div>
 ```
 ```javascript
@@ -591,9 +529,38 @@ angular.module('myApp')
     this.myData = 'hello';
   })
 
-  .filter('userName', function () {
+  .filter('uppercase', function () {
     return function (param) {
-      return '@' + param;
+      return param.toUpperCase();
+    };
+  });
+```
+
+---
+
+## Angular.js
+
+#### Filtres
+
+Cas d'utilisation : affichage d'un login "twitter" :
+
+```html
+<div ng-conroller="MyController as ctrl">
+  {{ ctrl.tweet.login | twitterLogin }}
+</div>
+```
+```javascript
+angular.module('myApp')
+  .controller('MyController', function () {
+    this.tweet = {
+      login: 'mjeanroy',
+      message: 'Hello Insa'
+    };
+  })
+
+  .filter('twitterLogin', function () {
+    return function (login) {
+      return '@' + login;
     };
   });
 ```
@@ -604,11 +571,11 @@ angular.module('myApp')
 
 #### Directives
 
-- Les directives représentent une extention du DOM
-- Permettent de centraliser la manipulation du DOM
-- Concept très proche des WebComponents
+- Les directives représentent une extention du DOM : attribut / balise customisé
+  - Permettent de centraliser la manipulation du DOM
+  - Concept très proche des WebComponents
 - Peut être utilisée comme un attribut ou une nouvelle balise
-- Les attributs ng-controller / ng-app / ng-model sont des directives !
+- Les attributs `ng-controller` / `ng-app` / `ng-model` sont des directives !
 
 ---
 
@@ -624,6 +591,42 @@ module.directive('ngBind', function () {
     scope.$watch(attrs.ngBind, function (newValue) {
       element.html(newValue);
     });
+  };
+});
+```
+
+---
+
+## Angular.js
+
+#### Directives
+
+- Les directives peuvent avoir un template html
+  - Pratique pour séparer logique et présentation.
+- Les directives disposent d'un scope :
+  - Permet d'implémenter le data binding facilement !
+
+---
+
+## Angular.js
+
+#### Directives
+
+Exemple d'une directive custom :
+
+```html
+<div ng-controller="TweetController as ctrl">
+  <tweet tweet="ctrl.activeTweet"></tweet>
+</div>
+```
+
+```javascript
+angular.module('app').directive('tweet', function () {
+  return {
+    template: '<div>{{tweet.login}} - {{tweet.message}}</div>',
+    scope: {
+      tweet: '='
+    }
   };
 });
 ```
