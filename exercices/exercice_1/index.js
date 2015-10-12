@@ -52,7 +52,7 @@ var Scope = function () {
 
 var $$directives = {
   'ng-bind': function (scope, element, attributes) {
-  	scope.$watch(attributes['ng-bind'].value, function (newValue) {
+    scope.$watch(attributes['ng-bind'].value, function (newValue) {
       // TODO #3
       // Implémenter le code de la fonction.
       // Cette fonction doit mettre à jour le contenu de l'élément du DOM.
@@ -60,15 +60,15 @@ var $$directives = {
       // Par exemple:
       //   element.innerHTML = 'foo';
       // -> Ecrit la valeur "foo" dans le DOM
-  	});
+    });
   },
 
   'ng-model': function (scope, element, attributes) {
-  	scope.$watch(attributes['ng-model'].value, function (newValue) {
-  	  element.value = newValue;
-  	});
+    scope.$watch(attributes['ng-model'].value, function (newValue) {
+      element.value = newValue;
+    });
 
-  	element.addEventListener('keyup', function () {
+    element.addEventListener('keyup', function () {
       var name = attributes['ng-model'].value;
       scope.$apply(function () {
         // TODO #4
@@ -76,7 +76,7 @@ var $$directives = {
         // Cette fonction doit mettre à jour une variable dans l'objet scope.
         // Le nom de la variable sur le scope est donné par la variable "name"
       });
-  	});
+    });
   }
 };
 
