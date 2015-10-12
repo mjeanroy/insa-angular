@@ -1,0 +1,19 @@
+{
+  "name": "insa-exercice",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "bower": "bower install",
+    "start": "node server/app.js"
+  },
+  "dependencies": {
+    "express": "4.10.2",
+    "body-parser": "1.9.2",
+    "socket.io": "1.2.0",
+    "bower": "1.5.3",
+    "cors": "2.7.1"
+  }
+}
